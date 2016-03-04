@@ -44,9 +44,9 @@ function unibz_s_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'unibz_s' ),
-	) );
+    register_nav_menus( array(
+        'primary' => esc_html__( 'Primary', 'unibz_s' ),
+    ) );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -81,7 +81,7 @@ function unibz_s_setup() {
 endif;
 add_action( 'after_setup_theme', 'unibz_s_setup' );
 
-/**
+/**'
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
@@ -189,7 +189,7 @@ function modify_admin_bar($wp_admin_bar){
     $wp_admin_bar->remove_node('customize');    // remove customize
     $wp_admin_bar->remove_node('themes');       // remove my-site -> themes
     $wp_admin_bar->remove_node('widgets');      // remove my-site -> widgets
-    $wp_admin_bar->remove_node('menus');        // remove my-site -> menus
+    //$wp_admin_bar->remove_node('menus');        // remove my-site -> menus
     $wp_admin_bar->remove_node('comments');     // remove comments
     $wp_admin_bar->remove_node('new-post');     // remove new-content -> post
 }
