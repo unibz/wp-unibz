@@ -34,17 +34,20 @@
 
             <nav id="site-navigation" class="main-navigation" role="navigation">
                 <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'unibz_s' ); ?></button>
-                <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'depth' => 1 ) ); ?>
+                <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'depth' => 0 ) ); ?>
             </nav><!-- #site-navigation -->
 
         </div>
     
     </header><!-- #masthead -->
-   
-    <nav class="secondary-navigation">
-        <?php
-            print_r($_SERVER);
-        ?>
-    </nav>
 
+<?php /* 
+    <nav class="secondary-navigation">
+        <pre style="background:black">
+        <?php
+            print_r(get_pages_tree());
+        ?>
+        </pre>
+    </nav>
+*/?>
 	<div id="content" class="site-content">
