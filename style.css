@@ -90,6 +90,7 @@ a:hover {
 }
 
 #primary-menu ul.children {
+    display:none;
     position:absolute;
     box-sizing:border-box;
     top:72px;
@@ -184,8 +185,7 @@ main#main {
 }
 
 
-
-@media (min-width:400px) {
+@media (min-width:800px) {
     #menu-toggle {
         display:none;
     }
