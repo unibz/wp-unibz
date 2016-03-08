@@ -6,8 +6,27 @@
  */
 ( function() {
     
-    function toggle(elem) {
-        elem.style.display = (elem.style.display=='none')?'block':'none';
+    function toggleMenu(elem) {
+        function hide(node) {
+            node.style.display='none';
+        }
+        function show(elem) {
+            node.style.display='block';
+        }
+
+        if(elem.style.display=='block') {
+            var children = elem.getElementsByTagName('ul');
+            if(children.length>0){
+                children = children.childNodes;
+                for(var i=0; i<children.length; i++){
+                    hide(children);
+                }
+            }
+            hide(elem);
+        }
+        else {
+            show(elem);
+        }
     }
 
     function setupChildren(listItem, isRoot){
@@ -34,8 +53,6 @@
         else {
             listItem.onclick = function(event) {
                 event.stopPropagation();
-                childrenContainer.style.top =
-                    listItem.parentNode.getBoundingClientRect().height +"px";
                 toggle(childrenContainer);
             }
         }
@@ -46,31 +63,39 @@
             setupChildren(children[i], false);
         }
     }
-	
-    var container, button, menu, children;
 
+
+    /*
+     * Setup the menu
+     */
+    var container, button, menu, children;
 
 	container = document.getElementById( 'site-navigation' );
 	if ( ! container ) {
 		return;
 	}
 
-	button = container.getElementsByTagName( 'button' )[0];
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
-
 	menu = container.getElementsByTagName( 'ul' )[0];
-    
     children = menu.childNodes;
     for(var i=0; i<children.length; i++){
         setupChildren(children[i], true);
     }
 
-    children = menu.getElementsByClassName('children');
+    /*children = menu.getElementsByClassName('children');
     for(var i=0; i<children.length; i++){
         toggle(children[i]);
-        console.log(children[i]);
+    }*/
+
+    /*
+     * Set onclick event on menu-toggle button
+     */
+	button = document.getElementById('menu-toggle');
+	if ( 'undefined' === typeof button ) {
+		return;
+	}
+    button.onclick = function() {
+        var menu = document.getElementById('primary-menu');
+        toggle(menu);
     }
 
-} )();
+})();
