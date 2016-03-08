@@ -10,28 +10,40 @@
         elem.style.display = (elem.style.display=='none')?'block':'none';
     }
 
-    function setupChildren(parentLI){
-        if(parentLI.className.indexOf('page_item_has_children')!=-1){
-            parentLI.getElementsByTagName('a')[0].href='#';
-        }
-
-        var childUL = parentLI.getElementsByTagName('ul')[0];
-
-        if(typeof childUL == 'undefined'){
+    function setupChildren(listItem, isRoot){
+        
+        // we do something only if the list item has children
+        if(listItem.className.indexOf('page_item_has_children') == -1){
             return;
         }
-        else{
-            childUL.style.display='none';
+        
+        // remove the href from the link
+        listItem.getElementsByTagName('a')[0].href='#';
+
+        // get the children container node
+        var childrenContainer = listItem.getElementsByTagName('ul')[0];
+
+        // set the parent to show the childrenContainer on click
+        if(isRoot==true) {
+            listItem.onclick = function(event) {
+                event.stopPropagation();
+                childrenContainer.style.top = document.getElementById('masthead').getBoundingClientRect().bottom+"px";
+                toggle(childrenContainer);
+            }
+        }
+        else {
+            listItem.onclick = function(event) {
+                event.stopPropagation();
+                childrenContainer.style.top =
+                    listItem.parentNode.getBoundingClientRect().height +"px";
+                toggle(childrenContainer);
+            }
         }
 
-        parentLI.onclick = function(event) {
-            event.stopPropagation();
-            toggle(childUL);
-        }
-
-        var children = childUL.childNodes;
+        // recursive call on the children
+        var children = childrenContainer.childNodes;
         for(var i=0; i<children.length; i++){
-            setupChildren(children[i]);
+            setupChildren(children[i], false);
         }
     }
 	
@@ -49,10 +61,14 @@
 
 	menu = container.getElementsByTagName( 'ul' )[0];
 
-    children = menu.getElementsByTagName('li');
-
+    children = menu.childNodes;
     for(var i=0; i<children.length; i++){
-        setupChildren(children[i]);
+        setupChildren(children[i], true);
+    }
+
+    children = menu.getElementsByClassName('children');
+    for(var i=0; i<children.length; i++){
+        toggle(children[i]);
     }
 
 } )();

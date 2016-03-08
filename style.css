@@ -59,7 +59,7 @@ a:hover {
 }
 
 #site-navigation #primary-menu {
-	display:none;
+	display:block;
 }
 
 #site-navigation.toggled #primary-menu {
@@ -90,10 +90,9 @@ a:hover {
 }
 
 #primary-menu ul.children {
-    display:none;
+    display:block;
     position:absolute;
     box-sizing:border-box;
-    top:72px;
     min-height:72px;
     left:0;
     margin:0;
