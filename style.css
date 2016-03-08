@@ -39,6 +39,18 @@ a:hover {
     color:#007be4;
 }
 
+noscript div {
+    color:#fff;
+    background:#007be4;
+    display:block;
+    padding:1em;
+}
+
+noscript a , noscript a:hover{
+    color:#fff;
+    text-decoration:underline;
+}
+
 #masthead {
     box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
     height:72px;
@@ -50,12 +62,15 @@ a:hover {
 #logo {
     width: 65px;
     height: 44px;
-    position:absolute;
-    top:15px;
+    display:inline;
 }
 
 #menu-toggle {
     float:right;
+}
+
+#site-navigation {
+    display:inline-block;
 }
 
 #site-navigation #primary-menu {
@@ -78,6 +93,11 @@ a:hover {
     margin-right:3em;
 }
 
+#primary-menu>ul>li>a {
+    position:relative;
+    top:-10px;
+}
+
 #primary-menu ul li a, .main-navigation ul li a:hover {
     color:#000;
     font-weight:600;
@@ -85,12 +105,12 @@ a:hover {
     text-decoration:none;
 }
 
-#primary-menu ul li.current_page_item {
+#primary-menu ul li.current_page_item a {
     border-bottom:1px solid black;
 }
 
 #primary-menu ul.children {
-    display:block;
+    display:none;
     position:absolute;
     box-sizing:border-box;
     min-height:72px;
@@ -136,13 +156,17 @@ a:hover {
     right:-0.5em;
 }
 
+#primary-menu>ul>li.page_item_has_children:after {
+    top:-1.2em;
+}
+
 #primary-menu li.page_item_has_children.selected:after {
     content:"▲";
 }
 
 main#main {
     min-height:30em;
-    padding:8em 0;
+    padding:3em 0 8em 0;
 }
 
 #colophon {

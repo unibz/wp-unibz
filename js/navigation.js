@@ -27,7 +27,7 @@
         if(isRoot==true) {
             listItem.onclick = function(event) {
                 event.stopPropagation();
-                childrenContainer.style.top = document.getElementById('masthead').getBoundingClientRect().bottom+"px";
+                childrenContainer.style.top = document.getElementById('masthead').getBoundingClientRect().bottom +"px";
                 toggle(childrenContainer);
             }
         }
@@ -49,6 +49,7 @@
 	
     var container, button, menu, children;
 
+
 	container = document.getElementById( 'site-navigation' );
 	if ( ! container ) {
 		return;
@@ -60,7 +61,7 @@
 	}
 
 	menu = container.getElementsByTagName( 'ul' )[0];
-
+    
     children = menu.childNodes;
     for(var i=0; i<children.length; i++){
         setupChildren(children[i], true);
@@ -69,6 +70,7 @@
     children = menu.getElementsByClassName('children');
     for(var i=0; i<children.length; i++){
         toggle(children[i]);
+        console.log(children[i]);
     }
 
 } )();
