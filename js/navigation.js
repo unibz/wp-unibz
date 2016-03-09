@@ -98,6 +98,99 @@
 
 
     /*
+     * Move menu-toggle button inside nav as root element of the menu
+     */
+    function set_button_as_root_menu_item() {
+        
+        // get the menu container
+        var container = document.getElementById('primary-menu')
+        // get the actual root element of the menu
+        var root = container.getElementsByTagName('ul')[0];
+        root.className += 'children';
+        
+        // create a new root
+        var newRoot = document.createElement('ul');
+        var newFirstChild = document.createElement('li');
+        newFirstChild.className += 'page_item page_item_has_children';
+        newRoot.appendChild(newFirstChild);
+
+        // move the old root into the first child of the new root
+        newFirstChild.appendChild(document.getElementById('menu-toggle'));
+        newFirstChild.appendChild(root);
+        
+        // move the new root into the menu container
+        container.appendChild(newRoot);
+
+        // reset menu click listeners
+        set_listeners();
+    }
+
+
+    /*
+     * Move away menu-toggle button and restore original root element of the menu
+     */
+    function set_original_root_menu_item() {
+        //@TODO make this work
+        // get the menu container
+        var container = document.getElementById('primary-menu')
+        // get the original root element of the menu
+        var root = container.getElementsByClassName('children')[0];
+        root.className = '';
+        root.style.display = 'block';
+       
+        // create a temporary container
+        var tmp = document.createElement('div');
+        tmp.appendChild(root);
+    
+        // replace the actual root
+        var actualRoot = container.getElementsByTagName('ul')[0];
+        container.replaceChild(root, actualRoot);
+
+        // move the menu-toggle button to the original place
+        container.parentNode.insertBefore(document.getElementById('menu-toggle'), container);
+
+        // reset menu click listeners
+        set_listeners();
+    }
+
+
+    /*
+     * Set the menu click event listeners
+     */
+    function set_listeners() {
+        
+        // iterate over the <li>s with a child submenu to enable submenu-toggling
+        var submenus = document.querySelectorAll('.page_item_has_children');
+        for (var i=0; i<submenus.length; i++) {
+            // set the link href to # to prevent redirecting when clicking
+            submenus[i].getElementsByTagName('a')[0].href = '#';
+
+            // set display:none to child to be able to read that stat yet at the first click
+            submenus[i].getElementsByClassName('children')[0].style.display = 'none';
+
+            // add click event listener to <li> items to show their <ul> children
+            submenus[i].addEventListener('click', function(evt) {
+                // get parent <ul>
+                var ul = this.getElementsByClassName('children')[0];
+
+                // set child position below the parent <ul>
+                var top = (this.parentNode.parentNode.getAttribute('class') == 'menu') ?
+                    document.getElementById('masthead').getBoundingClientRect().bottom :
+                    this.parentNode.getBoundingClientRect().height;           //@ TODO: understand why here goes .height instead of .bottom (perhaps position:absolute of parent submenu?)
+                ul.style.top = top + 'px';
+
+                // do the job
+                toggle_menu(ul);
+
+                // stop event propagation to the parent menu
+                evt.stopPropagation();
+            });
+        }
+    }
+
+
+
+    /*s
      * Test all features of this file
      */
     function test () {
@@ -175,37 +268,21 @@
      * Begin self-executing code
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      */
-
+    
     // Uncomment the next line to test code above
     //test();return;
-        
+    
+    // Do this if you want to have a working menu
+    set_listeners();
 
-    // iterate over the <li>s with a child submenu to enable submenu-toggling
-    var submenus = document.querySelectorAll('.page_item_has_children');
-    for (var i=0; i<submenus.length; i++) {
-        // set the link href to # to prevent redirecting when clicking
-        submenus[i].getElementsByTagName('a')[0].href = '#';
+    window.addEventListener('resize', function(evt) {
+        /* check what has to be done and call either */
+        //set_original_root_menu_item();
 
-        // set display:none to child to be able to read that stat yet at the first click
-        submenus[i].getElementsByClassName('children')[0].style.display = 'none';
-
-        // add click event listener to <li> items to show their <ul> children
-        submenus[i].addEventListener('click', function(evt) {
-            // get parent <ul>
-            var ul = this.getElementsByClassName('children')[0];
-
-            // set child position below the parent <ul>
-            var top = (this.parentNode.parentNode.getAttribute('class') == 'menu') ?
-                document.getElementById('masthead').getBoundingClientRect().bottom :
-                this.parentNode.getBoundingClientRect().height;           //@ TODO: understand why here goes .height instead of .bottom (perhaps position:absolute of parent submenu?)
-            ul.style.top = top + 'px';
-
-            // do the job
-            toggle_menu(ul);
-
-            // stop event propagation to the parent menu
-            evt.stopPropagation();
-        });
-    }
+        /* or */
+        //set_button_as_root_menu_item();
+        console.log(evt);
+    }, true);
+    
     
 })();

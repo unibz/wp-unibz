@@ -73,10 +73,6 @@ noscript a , noscript a:hover{
     display:inline-block;
 }
 
-#primary-menu {
-	display:none;
-}
-
 #site-navigation.toggled #primary-menu {
 	display:block;
 }
