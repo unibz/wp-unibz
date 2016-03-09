@@ -1,101 +1,211 @@
 /**
  * File navigation.js.
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
+ * Handles the navigation menu.
  */
 ( function() {
-    
-    function toggleMenu(elem) {
-        function hide(node) {
-            node.style.display='none';
-        }
-        function show(elem) {
-            node.style.display='block';
+
+    /*
+     * Set display:none to an HTML element and backup its original value
+     */
+    function hide(elem) {
+        
+        if (typeof elem == 'undefined') {
+            // something undefined is already hidden
+            return true;
         }
 
-        if(elem.style.display=='block') {
-            var children = elem.getElementsByTagName('ul');
-            if(children.length>0){
-                children = children.childNodes;
-                for(var i=0; i<children.length; i++){
-                    hide(children);
-                }
-            }
-            hide(elem);
+        elem.style.display = 'none';
+        
+        return true;
+    };
+
+
+    /*
+     * Set display to an HTML element according to its original value
+     */
+    function show(elem) {
+
+        if (typeof elem == 'undefined') {
+            // something undefined cannot be shown
+            return false;
         }
-        else {
+
+        elem.style.display = 'block'; 
+        
+        return true;
+    };
+
+
+    /*
+     * Recursively close (hide) all children of a nested <ul> menu
+     */
+    function close_menu (elem) {
+        
+        // base case
+        if (typeof elem == 'undefined') {
+            return true;
+        }
+        
+        // the return value is true if and only if all children can be
+        // closed recursively returning true; the return value doesn't
+        // affect the process of closing the children but only tells us
+        // whether something strange happened
+        var returnValue = false;
+
+        // elem has to be an <ul>, all its <ul> children will be closed
+        if (elem.nodeName.toLowerCase() != 'ul') {
+            if (elem.nodeName.toLowerCase() != 'li') {
+                // elem is not part of a menu
+                return false;
+            }
+            else {
+                elem = elem.parentNode;
+            }
+        }
+
+        // get the <li>s into an Array
+        var listItems = Array.prototype.slice.call(elem.childNodes);
+
+        // recursively explore the menu tree
+        for (var i=0; i<listItems.length; i++) {
+            if (listItems[i].nodeName.toLowerCase() != 'li'){
+                // the element cannot have a child menu
+                continue;
+            }
+            else {
+                var submenu = elem.getElementsByTagName('ul')[0];
+                returnValue = close_menu(submenu) && hide(submenu);
+            }
+        }
+
+        // close the node
+        return returnValue && hide(elem);
+    }
+
+
+    /*
+     * Toggle a menu's children visibility
+     */
+    function toggle_menu(elem) {
+        if (elem.style.display == 'none') {
             show(elem);
         }
-    }
-
-    function setupChildren(listItem, isRoot){
-        
-        // we do something only if the list item has children
-        if(listItem.className.indexOf('page_item_has_children') == -1){
-            return;
-        }
-        
-        // remove the href from the link
-        listItem.getElementsByTagName('a')[0].href='#';
-
-        // get the children container node
-        var childrenContainer = listItem.getElementsByTagName('ul')[0];
-
-        // set the parent to show the childrenContainer on click
-        if(isRoot==true) {
-            listItem.onclick = function(event) {
-                event.stopPropagation();
-                childrenContainer.style.top = document.getElementById('masthead').getBoundingClientRect().bottom +"px";
-                toggle(childrenContainer);
-            }
-        }
         else {
-            listItem.onclick = function(event) {
-                event.stopPropagation();
-                toggle(childrenContainer);
-            }
-        }
-
-        // recursive call on the children
-        var children = childrenContainer.childNodes;
-        for(var i=0; i<children.length; i++){
-            setupChildren(children[i], false);
+            close_menu(elem);
         }
     }
 
 
     /*
-     * Setup the menu
+     * Test all features of this file
      */
-    var container, button, menu, children;
+    function test () {
+    
+        console.log('BEGIN TESTING');
+        console.log('---');
+        
+        // test show/hide on the logo
+        var logo = document.getElementById('logo');
+        logo.style.display = 'inline';
+        console.log('Testing show/hide on "logo"');
+        console.log('    logo.style.display = ' + logo.style.display);
+        console.log('  > logo.show() = ' + show(logo));
+        console.log('    logo.style.display = ' + logo.style.display);
+        console.log('  > logo.hide() = ' + hide(logo));
+        console.log('    logo.style.display = ' + logo.style.display);
+        console.log('  > logo.show() = ' + show(logo));
+        console.log('    logo.style.display = ' + logo.style.display)
+        console.log('Resetting logo.style.display to "inline"');
+        logo.style.display = 'inline';
+        console.log('---');
 
-	container = document.getElementById( 'site-navigation' );
-	if ( ! container ) {
-		return;
-	}
-
-	menu = container.getElementsByTagName( 'ul' )[0];
-    children = menu.childNodes;
-    for(var i=0; i<children.length; i++){
-        setupChildren(children[i], true);
+        // test close_menu
+        var menu = document.createElement('ul');
+        menu.style.display = 'block';
+        menu.appendChild(document.createElement('li'));
+        menu.appendChild(document.createElement('li'));
+        menu.appendChild(document.createElement('li'));
+        menu.appendChild(document.createElement('li'));
+        menu.appendChild(document.createElement('li'));
+        var li_with_children = document.createElement('li');
+        menu.appendChild(li_with_children);
+        var submenu = document.createElement('ul');
+        submenu.style.display = 'block';
+        li_with_children.appendChild(submenu);
+            submenu.appendChild(document.createElement('li'));
+            submenu.appendChild(document.createElement('li'));
+            submenu.appendChild(document.createElement('li'));
+            submenu.appendChild(document.createElement('li'));
+            var other_li_with_children = document.createElement('li');
+            submenu.appendChild(other_li_with_children);
+            var subsubmenu = document.createElement('ul');
+            subsubmenu.style.display = 'block';
+            other_li_with_children.appendChild(subsubmenu);
+                subsubmenu.appendChild(document.createElement('li'));
+                subsubmenu.appendChild(document.createElement('li'));
+                subsubmenu.appendChild(document.createElement('li'));
+        console.log('Testing close_menu on "submenu"');
+        console.log('    menu.style.display = ' + menu.style.display)
+        console.log('    submenu.style.display = ' + submenu.style.display)
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('  > close_menu(submenu) = ' + close_menu(submenu));
+        console.log('    menu.style.display = ' + menu.style.display)
+        console.log('    submenu.style.display = ' + submenu.style.display)
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('Resetting submenu.style.display to "block"');
+        submenu.style.display = 'block';
+        console.log('Resetting subsubmenu.style.display to "block"');
+        subsubmenu.style.display = 'block';
+        console.log('---');
+        console.log('Testing close_menu on "menu"');
+        console.log('    menu.style.display = ' + menu.style.display)
+        console.log('    submenu.style.display = ' + submenu.style.display)
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('  > close_menu(menu) = ' + close_menu(menu));
+        console.log('    menu.style.display = ' + menu.style.display)
+        console.log('    submenu.style.display = ' + submenu.style.display)
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('---');
     }
 
-    /*children = menu.getElementsByClassName('children');
-    for(var i=0; i<children.length; i++){
-        toggle(children[i]);
-    }*/
 
     /*
-     * Set onclick event on menu-toggle button
+     * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     * Begin self-executing code
+     * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      */
-	button = document.getElementById('menu-toggle');
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
-    button.onclick = function() {
-        var menu = document.getElementById('primary-menu');
-        toggle(menu);
-    }
 
+    // Uncomment the next line to test code above
+    //test();return;
+        
+
+    // iterate over the <li>s with a child submenu to enable submenu-toggling
+    var submenus = document.querySelectorAll('.page_item_has_children');
+    for (var i=0; i<submenus.length; i++) {
+        // set the link href to # to prevent redirecting when clicking
+        submenus[i].getElementsByTagName('a')[0].href = '#';
+
+        // set display:none to child to be able to read that stat yet at the first click
+        submenus[i].getElementsByClassName('children')[0].style.display = 'none';
+
+        // add click event listener to <li> items to show their <ul> children
+        submenus[i].addEventListener('click', function(evt) {
+            // get parent <ul>
+            var ul = this.getElementsByClassName('children')[0];
+
+            // set child position below the parent <ul>
+            var top = (this.parentNode.parentNode.getAttribute('class') == 'menu') ?
+                document.getElementById('masthead').getBoundingClientRect().bottom :
+                this.parentNode.getBoundingClientRect().height;           //@ TODO: understand why here goes .height instead of .bottom (perhaps position:absolute of parent submenu?)
+            ul.style.top = top + 'px';
+
+            // do the job
+            toggle_menu(ul);
+
+            // stop event propagation to the parent menu
+            evt.stopPropagation();
+        });
+    }
+    
 })();
