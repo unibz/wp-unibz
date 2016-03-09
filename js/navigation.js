@@ -6,7 +6,22 @@
 ( function() {
 
     /*
-     * Set display:none to an HTML element and backup its original value
+     * Returns a string representing the page size class
+     *  + 'small'
+     *  + 'big'
+     */
+    function get_page_size_class() {
+        var w = window.innerWidth;
+        if (w<800) {
+            return 'small';
+        } else {
+            return 'big';
+        }
+    }
+
+
+    /*
+     * Set display:none to an HTML element
      */
     function hide(elem) {
         
@@ -18,11 +33,11 @@
         elem.style.display = 'none';
         
         return true;
-    };
+    }
 
 
     /*
-     * Set display to an HTML element according to its original value
+     * Set display:block to an HTML element
      */
     function show(elem) {
 
@@ -34,7 +49,7 @@
         elem.style.display = 'block'; 
         
         return true;
-    };
+    }
 
 
     /*
@@ -47,12 +62,6 @@
             return true;
         }
         
-        // the return value is true if and only if all children can be
-        // closed recursively returning true; the return value doesn't
-        // affect the process of closing the children but only tells us
-        // whether something strange happened
-        var returnValue = false;
-
         // elem has to be an <ul>, all its <ul> children will be closed
         if (elem.nodeName.toLowerCase() != 'ul') {
             if (elem.nodeName.toLowerCase() != 'li') {
@@ -64,8 +73,14 @@
             }
         }
 
-        // get the <li>s into an Array
-        var listItems = Array.prototype.slice.call(elem.childNodes);
+        // the return value is true if and only if all children can be
+        // closed recursively returning true; the return value doesn't
+        // affect the process of closing the children but only tells us
+        // whether something strange has happened
+        var returnValue = false;
+
+        // get <li>s
+        var listItems = elem.childNodes;
 
         // recursively explore the menu tree
         for (var i=0; i<listItems.length; i++) {
@@ -98,59 +113,36 @@
 
 
     /*
-     * Move menu-toggle button inside nav as root element of the menu
+     * Add the menu-toggle button to the menu
      */
-    function set_button_as_root_menu_item() {
+    function set_menu_toggle_button() {
         
-        // get the menu container
+        // get the menu
         var container = document.getElementById('primary-menu')
-        // get the actual root element of the menu
-        var root = container.getElementsByTagName('ul')[0];
-        root.className += 'children';
+            .getElementsByTagName('ul')[0];
+
+        // create a new <ul> node
+        var listAnchor = document.createElement('ul');
+        listAnchor.className = 'children';
+        listAnchor.id = 'menu_anchor';
         
-        // create a new root
-        var newRoot = document.createElement('ul');
-        var newFirstChild = document.createElement('li');
-        newFirstChild.className += 'page_item page_item_has_children';
-        newRoot.appendChild(newFirstChild);
+        // create a new <li> node
+        var buttonNode = document.createElement('li');
+        buttonNode.className = 'fake_page_item page_item_has_children page_item_menu_toggle';
+      
+        // create a new <a> to wrap the button (needed by click listeners in set_listeners)
+        var buttonWrapper = document.createElement('a');
 
-        // move the old root into the first child of the new root
-        newFirstChild.appendChild(document.getElementById('menu-toggle'));
-        newFirstChild.appendChild(root);
+        // create the button 
+        var button = document.createElement('button');
         
-        // move the new root into the menu container
-        container.appendChild(newRoot);
+        // wrap everything together
+        buttonWrapper.appendChild(button);
+        buttonNode.appendChild(buttonWrapper);
+        buttonNode.appendChild(listAnchor);
 
-        // reset menu click listeners
-        set_listeners();
-    }
-
-
-    /*
-     * Move away menu-toggle button and restore original root element of the menu
-     */
-    function set_original_root_menu_item() {
-        //@TODO make this work
-        // get the menu container
-        var container = document.getElementById('primary-menu')
-        // get the original root element of the menu
-        var root = container.getElementsByClassName('children')[0];
-        root.className = '';
-        root.style.display = 'block';
-       
-        // create a temporary container
-        var tmp = document.createElement('div');
-        tmp.appendChild(root);
-    
-        // replace the actual root
-        var actualRoot = container.getElementsByTagName('ul')[0];
-        container.replaceChild(root, actualRoot);
-
-        // move the menu-toggle button to the original place
-        container.parentNode.insertBefore(document.getElementById('menu-toggle'), container);
-
-        // reset menu click listeners
-        set_listeners();
+        // move the button node into the menu
+        container.appendChild(buttonNode);
     }
 
 
@@ -188,6 +180,37 @@
         }
     }
 
+  
+    /*
+     * Handle menu modification when the page switches from one size-class to another
+     */
+    function adapt_page(pageClass) {
+        
+        // get the menu root
+        var root = document.getElementById('primary-menu')
+            .getElementsByTagName('ul')[0];
+        
+        // get the menu anchor
+        var anchor = document.getElementById('menu_anchor');
+
+        // get the items to move and choose the destination
+        var items, destination;
+        if (pageClass=='small') {
+            // page was big -> list items are in the root <ul>
+            items = root.querySelectorAll(':scope > li.page_item');
+            destination = anchor;
+        }
+        else {
+            // page was small -> list items are in the anchor <ul>
+            items = anchor.querySelectorAll(':scope > li.page_item');
+            destination = root;
+        }
+
+        // move the items to their destination
+        for (var i=0; i<items.length; i++) {
+            destination.appendChild(items[i]);
+        }
+    }
 
 
     /*s
@@ -239,29 +262,28 @@
                 subsubmenu.appendChild(document.createElement('li'));
                 subsubmenu.appendChild(document.createElement('li'));
         console.log('Testing close_menu on "submenu"');
-        console.log('    menu.style.display = ' + menu.style.display)
-        console.log('    submenu.style.display = ' + submenu.style.display)
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('    menu.style.display = ' + menu.style.display);
+        console.log('    submenu.style.display = ' + submenu.style.display);
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
         console.log('  > close_menu(submenu) = ' + close_menu(submenu));
-        console.log('    menu.style.display = ' + menu.style.display)
-        console.log('    submenu.style.display = ' + submenu.style.display)
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('    menu.style.display = ' + menu.style.display);
+        console.log('    submenu.style.display = ' + submenu.style.display);
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
         console.log('Resetting submenu.style.display to "block"');
         submenu.style.display = 'block';
         console.log('Resetting subsubmenu.style.display to "block"');
         subsubmenu.style.display = 'block';
         console.log('---');
         console.log('Testing close_menu on "menu"');
-        console.log('    menu.style.display = ' + menu.style.display)
-        console.log('    submenu.style.display = ' + submenu.style.display)
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('    menu.style.display = ' + menu.style.display);
+        console.log('    submenu.style.display = ' + submenu.style.display);
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
         console.log('  > close_menu(menu) = ' + close_menu(menu));
         console.log('    menu.style.display = ' + menu.style.display)
-        console.log('    submenu.style.display = ' + submenu.style.display)
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display)
+        console.log('    submenu.style.display = ' + submenu.style.display);
+        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
         console.log('---');
     }
-
 
     /*
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -273,16 +295,18 @@
     //test();return;
     
     // Do this if you want to have a working menu
+    set_menu_toggle_button();
     set_listeners();
 
+    // Listen to the window resize event and adapt the menu if the page class changes
+    var page_size_class = get_page_size_class();
+    adapt_page(page_size_class);
     window.addEventListener('resize', function(evt) {
-        /* check what has to be done and call either */
-        //set_original_root_menu_item();
-
-        /* or */
-        //set_button_as_root_menu_item();
-        console.log(evt);
+        var new_page_size_class = get_page_size_class();
+        if (page_size_class != new_page_size_class) {
+            page_size_class = new_page_size_class;
+            adapt_page(page_size_class);
+        }
     }, true);
-    
     
 })();

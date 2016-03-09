@@ -57,6 +57,8 @@ noscript a , noscript a:hover{
     padding:0.8em;
     z-index:1;
     box-sizing:border-box;
+    white-space:nowrap;
+    overflow:hidden;
 }
 
 #logo {
@@ -65,16 +67,35 @@ noscript a , noscript a:hover{
     display:inline;
 }
 
-#menu-toggle {
+.page_item_menu_toggle {
+    position:absolute;
+    width:100%;
+    top:0;
+    right:0;
+    margin:0 !important;
+    padding:25px 0 0 0;
+}
+
+.page_item_menu_toggle:after {
+    content:'' !important;
+}
+
+.page_item_menu_toggle button {
     float:right;
+    position:relative;
+    top:-10px;
+    right:15px;
+    background-color:white;
+    background-image:url('img/menu.png');
+    background-size:40px 40px;
+    border-radius:8px;
+    border:0;
+    width:40px;
+    height:40px;
 }
 
 #site-navigation {
     display:inline-block;
-}
-
-#site-navigation.toggled #primary-menu {
-	display:block;
 }
 
 #primary-menu ul {
@@ -125,7 +146,7 @@ noscript a , noscript a:hover{
     display:block;
     line-height:2.7em;
     box-sizing: border-box;
-    padding-left:10em;
+    padding-left:14em;
     max-width:1170px;
     margin:0 auto;
 }
@@ -204,20 +225,21 @@ main#main {
 }
 
 
-@media (min-width:800px) {
-    #menu-toggle {
-        display:none;
-    }
 
-    #primary-menu {
+
+
+@media (min-width:800px) {
+    .page_item {
         display:block;
     }
-
+    
+    .fake_page_item {
+        display:none !important;
+    }
 }
 
 @media (min-width:1190px) {
     main#main {
         padding:3em 0 8em 0;
     }
-
 }
