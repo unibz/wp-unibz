@@ -302,10 +302,21 @@
     var page_size_class = get_page_size_class();
     adapt_page(page_size_class);
     window.addEventListener('resize', function(evt) {
+
+        // adapt the page if the page-class changes
         var new_page_size_class = get_page_size_class();
         if (page_size_class != new_page_size_class) {
+            
+            // adapt page
             page_size_class = new_page_size_class;
             adapt_page(page_size_class);
+        
+            // close submenus
+            var submenus = document.querySelectorAll('#primary-menu > ul > li > ul');
+            console.log(submenus);
+            for (var i=0; i<submenus.length; i++) {
+                close_menu(submenus[i]);
+            }
         }
     }, true);
     

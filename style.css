@@ -29,6 +29,7 @@ html {
 body {  
     margin:0;
     padding:0;
+    min-width:320px;
 }
 
 a, a:visited, a:active {
@@ -142,11 +143,12 @@ noscript a , noscript a:hover{
 }
 
 #primary-menu ul ul li {
+    padding-right:5em;
+    text-align:right;
     height:72px;
     display:block;
     line-height:2.7em;
     box-sizing: border-box;
-    padding-left:14em;
     max-width:1170px;
     margin:0 auto;
 }
@@ -235,6 +237,12 @@ main#main {
     
     .fake_page_item {
         display:none !important;
+    }
+
+    #primary-menu ul ul li {
+        padding-right:0;
+        padding-left:14em;
+        text-align:left;
     }
 }
 
