@@ -30,8 +30,9 @@
             return true;
         }
 
-        elem.style.display = 'none';
-        
+        elem.style.top = '-400px';
+        elem.style.visibility = 'hidden';
+
         return true;
     }
 
@@ -46,7 +47,14 @@
             return false;
         }
 
-        elem.style.display = 'block'; 
+        var b1 = document.getElementById('masthead').getBoundingClientRect().bottom;
+        var b2 = elem.parentNode.parentNode.getBoundingClientRect().bottom;
+        var h = elem.parentNode.parentNode.getBoundingClientRect().height;
+       
+        elem.style.visibility = 'visible';
+        elem.style.top = (elem.parentNode.parentNode.parentNode.getAttribute('class') == 'menu') ?
+                    document.getElementById('masthead').getBoundingClientRect().bottom + 'px':
+                    elem.parentNode.parentNode.getBoundingClientRect().height + 'px';           //@ TODO: understand why here goes .height instead of .bottom (perhaps position:absolute of parent submenu?)
         
         return true;
     }
@@ -95,6 +103,7 @@
         }
 
         // close the node
+        elem.parentNode.className = elem.parentNode.className.replace(/ selected/g, '');
         return hide(elem) && returnValue;
     }
 
@@ -103,13 +112,12 @@
      * Toggle a menu's children visibility
      */
     function toggle_menu(elem) {
-        if (elem.style.display == 'none') {
+        if (elem.style.visibility == 'hidden') {
             show(elem);
             elem.parentNode.className += ' selected';
         }
         else {
             close_menu(elem);
-            elem.parentNode.className = elem.parentNode.className.replace(/ selected/g, '');
         }
     }
 
@@ -157,7 +165,7 @@
         var menu = document.getElementById('primary-menu')
             .childNodes[0];
         
-        menu.appendChild(button);
+        menu.insertBefore(button, menu.childNodes[0]);
     
     } set_lang_choice_button();
 
@@ -174,18 +182,13 @@
             submenus[i].getElementsByTagName('a')[0].href = '#';
 
             // set display:none to child to be able to read that stat yet at the first click
-            submenus[i].getElementsByClassName('children')[0].style.display = 'none';
+            submenus[i].getElementsByClassName('children')[0].style.visibility = 'hidden';
+            submenus[i].getElementsByClassName('children')[0].style.top = '-400px';
 
             // add click event listener to <li> items to show their <ul> children
             submenus[i].addEventListener('click', function(evt) {
                 // get parent <ul>
                 var ul = this.getElementsByClassName('children')[0];
-
-                // set child position below the parent <ul>
-                var top = (this.parentNode.parentNode.getAttribute('class') == 'menu') ?
-                    document.getElementById('masthead').getBoundingClientRect().bottom :
-                    this.parentNode.getBoundingClientRect().height;           //@ TODO: understand why here goes .height instead of .bottom (perhaps position:absolute of parent submenu?)
-                ul.style.top = top + 'px';
 
                 // do the job
                 toggle_menu(ul);

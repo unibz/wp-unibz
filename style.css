@@ -34,6 +34,7 @@ body {
 
 a, a:visited, a:active {
     color:#000;
+    transition:color 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 a:hover {
@@ -54,33 +55,32 @@ noscript a , noscript a:hover{
 
 #masthead {
     box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
-    height:72px;
-    padding:0.8em;
-    z-index:1;
+    z-index:0;
     box-sizing:border-box;
-    overflow:hidden;
     min-width:320px;
+    min-height:4em;
+    background-color:#fff;
+    width:100%;
+    position:absolute;
+    line-height:2.5em;
 }
 
 #logo {
-    width: 65px;
-    height: 44px;
-    display:inline;
+    height:3em;
     position:absolute;
-    z-index:99;
-    background:white;
-    padding-right:6em;
+    top:10px;
+    margin-left:1em;
+    z-index:1;
 }
 
 #lang_choice {
     position:absolute;
-    z-index:4;
-    top:-9px;
-    right:25px;
-    padding-top:34px;
+    z-index:3;
+    top:14px;
+    right:80px;
     width:5em;
     border:0;
-    margin:0;
+    margin-right:0.4em !important;
     text-align:center !important;
     display:inline-block !important;
     text-transform:uppercase;
@@ -98,6 +98,10 @@ noscript a , noscript a:hover{
 #lang_choice>ul.children>li {
     text-align:center !important;
     padding:0;
+}
+
+.fake_page_item {
+    cursor:pointer;
 }
     
 .page_item_menu_toggle {
@@ -126,6 +130,7 @@ noscript a , noscript a:hover{
     border:0;
     width:40px;
     height:40px;
+    cursor:pointer;
 }
 
 #site-navigation {
@@ -141,12 +146,12 @@ noscript a , noscript a:hover{
 #primary-menu ul li {
     display: inline-block;
     margin-right:3em;
+    white-space:nowrap;
 }
 
 #primary-menu ul li a, .main-navigation ul li a:hover {
     color:#000;
     font-weight:600;
-    line-height:1.3em;
     text-decoration:none;
 }
 
@@ -155,8 +160,8 @@ noscript a , noscript a:hover{
 }
 
 #primary-menu ul.children {
-    display:none;
     position:absolute;
+    z-index:-1;
     box-sizing:border-box;
     min-height:72px;
     left:0;
@@ -165,12 +170,13 @@ noscript a , noscript a:hover{
     width:100%;
     color:#fff;
     padding:1em;
-    z-index:2;
+    visibility:hidden;
     box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
+    transition:top 0.5s cubic-bezier(0.55, 0, 0.1, 1), visibility 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 #primary-menu ul ul li {
-    padding-right:5em;
+    padding-right:2em;
     text-align:right;
     height:72px;
     display:block;
@@ -179,7 +185,7 @@ noscript a , noscript a:hover{
     max-width:1170px;
     margin:0 auto;
 }
-    
+
 #primary-menu ul ul li.current_page_item {
     border:0;
 }
@@ -210,13 +216,13 @@ noscript a , noscript a:hover{
 
 main#main {
     min-height:30em;
-    padding:3em 1em 8em 1em;
+    padding:8em 1em;
 }
 
 #colophon {
     background-color:#007be4;
     color:#fff;
-    padding:3em 1em;
+    padding:3em 3em;
 }
 
 #colophon a, #colophon a:hover {
@@ -274,12 +280,12 @@ main#main {
         position:static;
         padding:0;
         float:right;
-        margin-right:0 !important;
+        margin-right:0.4em !important;
     }
 }
 
 @media (min-width:1190px) {
     main#main {
-        padding:3em 0 8em 0;
+        padding:8em 0;
     }
 }
