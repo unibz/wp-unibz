@@ -58,23 +58,56 @@ noscript a , noscript a:hover{
     padding:0.8em;
     z-index:1;
     box-sizing:border-box;
-    white-space:nowrap;
     overflow:hidden;
+    min-width:320px;
 }
 
 #logo {
     width: 65px;
     height: 44px;
     display:inline;
+    position:absolute;
+    z-index:99;
+    background:white;
+    padding-right:6em;
 }
 
+#lang_choice {
+    position:absolute;
+    z-index:4;
+    top:-9px;
+    right:25px;
+    padding-top:34px;
+    width:5em;
+    border:0;
+    margin:0;
+    text-align:center !important;
+    display:inline-block !important;
+    text-transform:uppercase;
+}
+
+#lang_choice a {
+    font-weight:lighter !important;
+}
+
+#lang_choice>ul.children {
+    width:5em !important;
+    left:initial !important;
+}
+
+#lang_choice>ul.children>li {
+    text-align:center !important;
+    padding:0;
+}
+    
 .page_item_menu_toggle {
     position:absolute;
-    width:100%;
     top:0;
     right:0;
     margin:0 !important;
     padding:25px 0 0 0;
+    z-index:2;
+    width:100%;
 }
 
 .page_item_menu_toggle:after {
@@ -86,7 +119,7 @@ noscript a , noscript a:hover{
     position:relative;
     top:-10px;
     right:15px;
-    background-color:white;
+    background-color:transparent;
     background-image:url('img/menu.png');
     background-size:40px 40px;
     border-radius:8px;
@@ -97,23 +130,17 @@ noscript a , noscript a:hover{
 
 #site-navigation {
     display:inline-block;
+    width:100%;
 }
 
 #primary-menu ul {
     list-style:none;
-    width:100%;
     padding-left:10em;
 }
 
 #primary-menu ul li {
-    display: inline;
-    height:100%;
+    display: inline-block;
     margin-right:3em;
-}
-
-#primary-menu>ul>li>a {
-    position:relative;
-    top:-10px;
 }
 
 #primary-menu ul li a, .main-navigation ul li a:hover {
@@ -168,19 +195,17 @@ noscript a , noscript a:hover{
 }
 
 #primary-menu li.page_item_has_children:after {
+    display:inline-block;
     content:"▼";
     font-size:0.6em;
     position:relative;
     top:-0.2em;
     right:-0.5em;
-}
-
-#primary-menu>ul>li.page_item_has_children:after {
-    top:-1.2em;
+    transition:transform 1s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 #primary-menu li.page_item_has_children.selected:after {
-    content:"▲";
+    transform:rotateX(540deg);
 }
 
 main#main {
@@ -243,6 +268,13 @@ main#main {
         padding-right:0;
         padding-left:14em;
         text-align:left;
+    }
+
+    #lang_choice {
+        position:static;
+        padding:0;
+        float:right;
+        margin-right:0 !important;
     }
 }
 

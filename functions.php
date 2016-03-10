@@ -189,67 +189,10 @@ function modify_admin_bar($wp_admin_bar){
     $wp_admin_bar->remove_node('customize');    // remove customize
     $wp_admin_bar->remove_node('themes');       // remove my-site -> themes
     $wp_admin_bar->remove_node('widgets');      // remove my-site -> widgets
-    //$wp_admin_bar->remove_node('menus');        // remove my-site -> menus
+    $wp_admin_bar->remove_node('menus');        // remove my-site -> menus
     $wp_admin_bar->remove_node('comments');     // remove comments
     $wp_admin_bar->remove_node('new-post');     // remove new-content -> post
 }
 add_action( 'admin_bar_menu', 'modify_admin_bar', 999 );
 
 
-
-
-/**
- * Get the list of all pages in a tree structure. User for building the menu.
- */
-function get_pages_tree(){
-    // get all pages as a list filtering out irrelevant attributes
-    $pages = array();
-    foreach(get_pages() as $p){
-        array_push($pages, array(
-            'id' => $p->ID,
-            'title' => $p->post_title,
-            'parent' => $p->post_parent,
-            'url' => $p->guid,
-            'order' => $p->menu_order,
-            'children' => array(),
-        ));
-    }
-
-    // build tree structure
-    // 1) split array in subarrays based on the parent attribute
-    $nodes = array();
-    foreach($pages as $p){
-        if(!isset($nodes[$p['parent']])) {
-            $nodes[$p['parent']] = array();
-        }
-        array_push($nodes[$p['parent']], $p);
-    };
-
-    // 2) sort subarrays based on the order attribute
-    foreach(array_keys($nodes) as $k){
-        usort($nodes[$k], function($a, $b){
-            return $a['order'] - $b['order'];
-        });
-    }
-
-    // 3) move each subarray under its relative parent
-    function set_as_child_of(&$nodes, $child){
-        foreach(array_keys($nodes) as $k){
-            if($nodes[$k]['id'] == $child['parent']){
-                array_push($nodes[$k]['children'], $child);
-                return;
-            }
-        }
-        foreach(array_keys($nodes) as $k){
-            set_as_child_of($nodes[$k]['children'], $child);
-        }
-    }
-    
-    foreach(array_keys($nodes) as $k){
-        if($k==0) continue;
-        foreach(array_keys($nodes[$k]) as $kk){
-            set_as_child_of($nodes[0], $nodes[$k][$kk]);
-        }
-    }
-    return $nodes[0];
-}

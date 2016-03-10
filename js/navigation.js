@@ -95,7 +95,7 @@
         }
 
         // close the node
-        return returnValue && hide(elem);
+        return hide(elem) && returnValue;
     }
 
 
@@ -105,9 +105,11 @@
     function toggle_menu(elem) {
         if (elem.style.display == 'none') {
             show(elem);
+            elem.parentNode.className += ' selected';
         }
         else {
             close_menu(elem);
+            elem.parentNode.className = elem.parentNode.className.replace(/ selected/g, '');
         }
     }
 
@@ -144,6 +146,20 @@
         // move the button node into the menu
         container.appendChild(buttonNode);
     }
+
+
+    /*
+     *
+     */
+    function set_lang_choice_button() {
+        var button = document.getElementById('lang_choice');
+        
+        var menu = document.getElementById('primary-menu')
+            .childNodes[0];
+        
+        menu.appendChild(button);
+    
+    } set_lang_choice_button();
 
 
     /*
