@@ -30,6 +30,23 @@ body {
     margin:0;
     padding:0;
     min-width:320px;
+    position:relative;
+    z-index:-1000;
+}
+
+div#page {
+    position:relative;
+    z-index:-999;
+}
+
+div#content {
+    position:relative;
+    z-index:-998;
+}
+
+div#primary {
+    position:relative;
+    z-index:-997;
 }
 
 a, a:visited, a:active {
@@ -55,7 +72,6 @@ noscript a , noscript a:hover{
 
 #masthead {
     box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
-    z-index:0;
     box-sizing:border-box;
     min-width:320px;
     min-height:4em;
@@ -75,11 +91,11 @@ noscript a , noscript a:hover{
 
 #lang_choice {
     position:absolute;
-    z-index:3;
     top:14px;
     right:80px;
     width:5em;
     border:0;
+    z-index:1;
     margin-right:0.4em !important;
     text-align:center !important;
     display:inline-block !important;
@@ -110,7 +126,6 @@ noscript a , noscript a:hover{
     right:0;
     margin:0 !important;
     padding:25px 0 0 0;
-    z-index:2;
     width:100%;
 }
 
@@ -216,13 +231,17 @@ noscript a , noscript a:hover{
 
 main#main {
     min-height:30em;
-    padding:8em 1em;
+    padding:10em 1em;
+    position:relative;
+    z-index:-999;
 }
 
 #colophon {
     background-color:#007be4;
     color:#fff;
     padding:3em 3em;
+    position:relative;
+    z-index:-996;
 }
 
 #colophon a, #colophon a:hover {
@@ -257,6 +276,27 @@ main#main {
     display:none;
 }
 
+.post-edit-link {
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+    border:1px solid #0055a8;
+    border-radius: 10px;
+    box-shadow: 2px 4px 1px #888;
+    padding: 0.5em 1em 0.5em 3em;
+    background-image: url("img/edit.png");
+    background-color: #007bef;
+    background-repeat: no-repeat;
+    background-position: 1em center;
+    background-size: 1em auto;
+    transition:background-color 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.post-edit-link:hover {
+    background-color:#4ba1f2;
+}
+
+
 
 
 
@@ -286,6 +326,6 @@ main#main {
 
 @media (min-width:1190px) {
     main#main {
-        padding:8em 0;
+        padding:10em 0;
     }
 }

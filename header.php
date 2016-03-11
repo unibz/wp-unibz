@@ -12,6 +12,14 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+<!--
+
+    Source code available at https://github.com/leonixyz/wp-unibz.git
+
+    This theme was created starting from "underscores"
+    that you can fint at http://underscores.me
+
+-->
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">

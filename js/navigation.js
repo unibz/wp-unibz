@@ -21,7 +21,7 @@
 
 
     /*
-     * Set display:none to an HTML element
+     * Move a menu item outsite of the page (on top)
      */
     function hide(elem) {
         
@@ -29,8 +29,8 @@
             // something undefined is already hidden
             return true;
         }
-
-        elem.style.top = '-400px';
+        
+        elem.style.top = -elem.getBoundingClientRect().height + 'px';
         elem.style.visibility = 'hidden';
 
         return true;
@@ -38,7 +38,7 @@
 
 
     /*
-     * Set display:block to an HTML element
+     * Move a menu item back into the page
      */
     function show(elem) {
 
@@ -47,15 +47,21 @@
             return false;
         }
 
-        var b1 = document.getElementById('masthead').getBoundingClientRect().bottom;
-        var b2 = elem.parentNode.parentNode.getBoundingClientRect().bottom;
-        var h = elem.parentNode.parentNode.getBoundingClientRect().height;
-       
         elem.style.visibility = 'visible';
-        elem.style.top = (elem.parentNode.parentNode.parentNode.getAttribute('class') == 'menu') ?
-                    document.getElementById('masthead').getBoundingClientRect().bottom + 'px':
-                    elem.parentNode.parentNode.getBoundingClientRect().height + 'px';           //@ TODO: understand why here goes .height instead of .bottom (perhaps position:absolute of parent submenu?)
-        
+        var top;
+        if (elem.parentNode.parentNode.parentNode.getAttribute('class') == 'menu') {
+            top  = document.getElementById('masthead').getBoundingClientRect().bottom;
+            top -= document.getElementById('masthead').getBoundingClientRect().top;
+        }
+        else {
+            //@TODO understand why here goes .height instead of (bottom - top)
+            //
+            //      --> perhaps position:absolute of parent submenu?
+            //
+            top  = elem.parentNode.parentNode.getBoundingClientRect().height;
+        }
+        elem.style.top = top + 'px';
+
         return true;
     }
 
@@ -123,9 +129,16 @@
 
 
     /*
-     * Add the menu-toggle button to the menu
+     * Add the menu-toggle button to the menu (this is necessary because wordpress automatically
+     * creates a menu with wp_nav_menu() populated with values and we want to add the menu-toggle
+     * button that is not natively supported)
+     *
+     * @TODO try to insert the menu button on php side
+     *
+     *       --> perhaps by hacking into wp_nav_menu() and setting option 'echo' to false?
+     *
      */
-    function set_menu_toggle_button() {
+    function setup_menu_toggle_button() {
         
         // get the menu
         var container = document.getElementById('primary-menu')
@@ -136,11 +149,11 @@
         listAnchor.className = 'children';
         listAnchor.id = 'menu_anchor';
         
-        // create a new <li> node
+        // create a new <li> nodeelem.getBoundingClientRect().height
         var buttonNode = document.createElement('li');
         buttonNode.className = 'fake_page_item page_item_has_children page_item_menu_toggle';
       
-        // create a new <a> to wrap the button (needed by click listeners in set_listeners)
+        // create a new <a> to wrap the button (needed by click listeners in setup_submenus)
         var buttonWrapper = document.createElement('a');
 
         // create the button 
@@ -157,9 +170,16 @@
 
 
     /*
+     * Add the choose-language button to the menu (this is necessary because wordpress automatically
+     * creates a menu with wp_nav_menu() populated with values and we want to add the choose-language
+     * button that is not natively supported)
+     *
+     * @TODO try to insert the language button on php side
+     *
+     *       --> perhaps by hacking into wp_nav_menu() and setting option 'echo' to false?
      *
      */
-    function set_lang_choice_button() {
+    function setup_lang_choice_button() {
         var button = document.getElementById('lang_choice');
         
         var menu = document.getElementById('primary-menu')
@@ -167,13 +187,13 @@
         
         menu.insertBefore(button, menu.childNodes[0]);
     
-    } set_lang_choice_button();
+    } 
 
 
     /*
-     * Set the menu click event listeners
+     * Style submenus and set their click event listeners
      */
-    function set_listeners() {
+    function setup_submenus() {
         
         // iterate over the <li>s with a child submenu to enable submenu-toggling
         var submenus = document.querySelectorAll('.page_item_has_children');
@@ -183,7 +203,9 @@
 
             // set display:none to child to be able to read that stat yet at the first click
             submenus[i].getElementsByClassName('children')[0].style.visibility = 'hidden';
-            submenus[i].getElementsByClassName('children')[0].style.top = '-400px';
+            submenus[i].getElementsByClassName('children')[0].style.top = 
+                -submenus[i].getElementsByClassName('children')[0].getBoundingClientRect().height + 'px';
+            submenus[i].getElementsByClassName('children')[0].style.zIndex = -(i+1);
 
             // add click event listener to <li> items to show their <ul> children
             submenus[i].addEventListener('click', function(evt) {
@@ -201,7 +223,7 @@
 
   
     /*
-     * Handle menu modification when the page switches from one size-class to another
+     * Handle menu modification when the page switches from one size class to another one
      */
     function adapt_page(pageClass) {
         
@@ -232,8 +254,8 @@
     }
 
 
-    /*s
-     * Test all features of this file
+    /*
+     * Test some features of this file
      */
     function test () {
     
@@ -310,16 +332,21 @@
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      */
     
-    // Uncomment the next line to test code above
+    // Uncomment the next line to run the test function above
     //test();return;
     
-    // Do this if you want to have a working menu
-    set_menu_toggle_button();
-    set_listeners();
+    // Add choose-language and toggle-menu buttons
+    setup_lang_choice_button();
+    setup_menu_toggle_button();
 
-    // Listen to the window resize event and adapt the menu if the page class changes
+    // build the page layout depending on the page size
     var page_size_class = get_page_size_class();
     adapt_page(page_size_class);
+   
+    // set up the submenus by adding some styles and click listeners
+    setup_submenus();
+    
+    // Listen to the window resize event to adapt the page according to its size
     window.addEventListener('resize', function(evt) {
 
         // adapt the page if the page-class changes
@@ -332,7 +359,6 @@
         
             // close submenus
             var submenus = document.querySelectorAll('#primary-menu > ul > li > ul');
-            console.log(submenus);
             for (var i=0; i<submenus.length; i++) {
                 close_menu(submenus[i]);
             }
