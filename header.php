@@ -62,26 +62,30 @@
         </div>
     
     </header><!-- #masthead -->
-
-    <div style="display:none;">
-        <ul>
-            <!-- this element will be moved to the navigation menu by javascript -->
-            <li id ="lang_choice" class="page_item_has_children fake_page_item">
-                <a href="#"><?php print_r(pll_current_language()); ?></a>
-                <ul class="children">
-                    <?php
-                        /* language switcher */
-                        pll_the_languages(array(
-                            'display_names_as' => 'slug',
-                            'show_flags' => 0,
-                            'hide_current' => 1,
-                            'hide_if_empty' => 0,
-                            'hide_if_no_translation' => 0,
-                        ));
-                    ?>
+    <?php 
+        global $polylang;
+        if(isset($polylang)):
+    ?>
+            <div style="display:none;">
                 <ul>
-            </li>
-        </ul>
-    </div>
-
+                    <!-- this element will be moved to the navigation menu by javascript -->
+                    <li id ="lang_choice" class="page_item_has_children fake_page_item">
+                        <a href="#">
+                            <?php print_r(pll_current_language()); ?></a>
+                        <ul class="children">
+                            <?php
+                                /* language switcher */
+                                pll_the_languages(array(
+                                    'display_names_as' => 'slug',
+                                    'show_flags' => 0,
+                                    'hide_current' => 1,
+                                    'hide_if_empty' => 0,
+                                    'hide_if_no_translation' => 0,
+                                ));
+                            ?>
+                        <ul>
+                    </li>
+                </ul>
+            </div>
+    <?php endif; ?>
     <div id="content" class="site-content">

@@ -181,12 +181,12 @@
      */
     function setup_lang_choice_button() {
         var button = document.getElementById('lang_choice');
-        
-        var menu = document.getElementById('primary-menu')
-            .childNodes[0];
-        
-        menu.insertBefore(button, menu.childNodes[0]);
-    
+        if(button != null) {      
+            var menu = document.getElementById('primary-menu')
+                .childNodes[0];
+            
+            menu.insertBefore(button, menu.childNodes[0]);
+        }
     } 
 
 
