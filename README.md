@@ -1,7 +1,14 @@
-# wp-unibz #
+# unibz_s #
 
-This Wordpress theme was created by adapting [\_s](http://underscores.me).
+This is a light-weight Wordpress theme that was made to respect the layout of 
+unibz.it webpages.
 
-## changes ##
- * posts, themes, plugins, comments and tools removed from the wp-admin section
- * wp_admin_bar purged from unnecessary nodes (posts, themes, etc.)
+ * If you are an editor and have to publish contents using this theme, then follow 
+   [this guide](doc/editors.md).
+ * If you are interested in more technical stuff like deploying it or developing,
+   then follow [this other guide](doc/developers.md).
+
+---
+
+## Credits ##
+This theme was created by adapting [\_s](http://underscores.me).

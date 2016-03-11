@@ -18,6 +18,7 @@
             
             <a class="small underline" href="https://www.unibz.it/en/legal/imprint/">Imprint</a>
             <a class="small underline" href="https://www.unibz.it/en/legal/privacy/">Privacy</a>
+            <a class="small underline" href="<?php echo wp_login_url(); ?>">Log in</a>
         </div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
