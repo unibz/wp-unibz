@@ -209,14 +209,24 @@
 
             // add click event listener to <li> items to show their <ul> children
             submenus[i].addEventListener('click', function(evt) {
-                // get parent <ul>
-                var ul = this.getElementsByClassName('children')[0];
-
-                // do the job
-                toggle_menu(ul);
 
                 // stop event propagation to the parent menu
                 evt.stopPropagation();
+
+                // get child <ul>
+                var ul = this.getElementsByClassName('children')[0];
+
+                // toggle the child
+                toggle_menu(ul);
+
+                // close the siblings
+                var siblings = this.parentNode.getElementsByClassName('selected');
+                console.log(siblings);
+                for(var j=0; j<siblings.length; j++) {
+                    if(siblings[j]!=this) {
+                        toggle_menu(siblings[j].getElementsByTagName('ul')[0]);
+                    }
+                }
             });
         }
     }
