@@ -84,6 +84,8 @@ noscript a , noscript a:hover{
 #logo {
     height:3em;
     position:absolute;
+    float:left;
+    display:inline;
     top:10px;
     margin-left:1em;
     z-index:1;
