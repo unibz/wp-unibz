@@ -162,10 +162,10 @@ function remove_menu_items() {
     // list of pages that has to be removed from the wp-admin section
     $pages = array(
         'edit.php',             // disable posts
-        'themes.php',           // disable themes
-        'plugins.php',          // disable plugins
+        //'themes.php',           // disable themes
+        //'plugins.php',          // disable plugins
         'edit-comments.php',    // disable comments
-        'tools.php',            // disable tools
+        //'tools.php',            // disable tools
     );
 
     foreach($pages as $page) {
@@ -184,12 +184,12 @@ remove_action('welcome_panel', 'wp_welcome_panel');
  *  Clean up admin bar
  */
 function modify_admin_bar($wp_admin_bar){
-    $wp_admin_bar->remove_node('customize');    // remove customize
-    $wp_admin_bar->remove_node('themes');       // remove my-site -> themes
-    $wp_admin_bar->remove_node('widgets');      // remove my-site -> widgets
-    $wp_admin_bar->remove_node('menus');        // remove my-site -> menus
-    $wp_admin_bar->remove_node('comments');     // remove comments
-    $wp_admin_bar->remove_node('new-post');     // remove new-content -> post
+    // $wp_admin_bar->remove_node('customize');    // remove customize
+    // $wp_admin_bar->remove_node('themes');       // remove my-site -> themes
+    // $wp_admin_bar->remove_node('widgets');      // remove my-site -> widgets
+    // $wp_admin_bar->remove_node('menus');        // remove my-site -> menus
+     $wp_admin_bar->remove_node('comments');     // remove comments
+     $wp_admin_bar->remove_node('new-post');     // remove new-content -> post
 }
 add_action( 'admin_bar_menu', 'modify_admin_bar', 999 );
 
