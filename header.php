@@ -25,7 +25,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=10" />
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 <?php wp_head(); ?>
 </head>
 

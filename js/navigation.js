@@ -247,12 +247,12 @@
         var items, destination;
         if (pageClass=='small') {
             // page was big -> list items are in the root <ul>
-            items = root.querySelectorAll('li.page_item');
+            items = root.querySelectorAll(':scope > li.page_item');
             destination = anchor;
         }
         else {
             // page was small -> list items are in the anchor <ul>
-            items = anchor.querySelectorAll('li.page_item');
+            items = anchor.querySelectorAll(':scope > li.page_item');
             destination = root;
         }
 
@@ -295,7 +295,7 @@
             adapt_page(page_size_class);
         
             // close submenus
-            var submenus = document.querySelectorAll('ul.children');
+            var submenus = document.querySelectorAll('#primary-menu > ul > li > ul');
             for (var i=0; i<submenus.length; i++) {
                 close_menu(submenus[i]);
             }
