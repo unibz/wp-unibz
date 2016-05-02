@@ -335,6 +335,6 @@ main#main {
 
 @media (min-width:1190px) {
     main#main {
-        padding:10em 0;
+        padding:1em;
     }
 }
