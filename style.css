@@ -191,6 +191,7 @@ noscript a , noscript a:hover{
     color:#fff;
     padding:1em;
     visibility:hidden;
+    border-top: 1px solid rgb(0, 94, 174);
     border-collapse: separate;
     box-shadow: 0 1rem 1rem -1rem rgba(0,0,0,.75);
     -webkit-box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
