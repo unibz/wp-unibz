@@ -80,7 +80,6 @@ noscript a , noscript a:hover{
     min-width:320px;
     min-height:4em;
     background-color:#fff;
-    position:absolute;
     line-height:2.5em;
 }
 
@@ -240,7 +239,7 @@ noscript a , noscript a:hover{
 
 main#main {
     min-height:30em;
-    padding:10em 1em;
+    padding:1em;
     position:relative;
     z-index:-999;
 }
