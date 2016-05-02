@@ -221,7 +221,6 @@
 
                 // close the siblings
                 var siblings = this.parentNode.getElementsByClassName('selected');
-                console.log(siblings);
                 for(var j=0; j<siblings.length; j++) {
                     if(siblings[j]!=this) {
                         toggle_menu(siblings[j].getElementsByTagName('ul')[0]);
@@ -263,78 +262,6 @@
         }
     }
 
-
-    /*
-     * Test some features of this file
-     */
-    function test () {
-    
-        console.log('BEGIN TESTING');
-        console.log('---');
-        
-        // test show/hide on the logo
-        var logo = document.getElementById('logo');
-        logo.style.display = 'inline';
-        console.log('Testing show/hide on "logo"');
-        console.log('    logo.style.display = ' + logo.style.display);
-        console.log('  > logo.show() = ' + show(logo));
-        console.log('    logo.style.display = ' + logo.style.display);
-        console.log('  > logo.hide() = ' + hide(logo));
-        console.log('    logo.style.display = ' + logo.style.display);
-        console.log('  > logo.show() = ' + show(logo));
-        console.log('    logo.style.display = ' + logo.style.display)
-        console.log('Resetting logo.style.display to "inline"');
-        logo.style.display = 'inline';
-        console.log('---');
-
-        // test close_menu
-        var menu = document.createElement('ul');
-        menu.style.display = 'block';
-        menu.appendChild(document.createElement('li'));
-        menu.appendChild(document.createElement('li'));
-        menu.appendChild(document.createElement('li'));
-        menu.appendChild(document.createElement('li'));
-        menu.appendChild(document.createElement('li'));
-        var li_with_children = document.createElement('li');
-        menu.appendChild(li_with_children);
-        var submenu = document.createElement('ul');
-        submenu.style.display = 'block';
-        li_with_children.appendChild(submenu);
-            submenu.appendChild(document.createElement('li'));
-            submenu.appendChild(document.createElement('li'));
-            submenu.appendChild(document.createElement('li'));
-            submenu.appendChild(document.createElement('li'));
-            var other_li_with_children = document.createElement('li');
-            submenu.appendChild(other_li_with_children);
-            var subsubmenu = document.createElement('ul');
-            subsubmenu.style.display = 'block';
-            other_li_with_children.appendChild(subsubmenu);
-                subsubmenu.appendChild(document.createElement('li'));
-                subsubmenu.appendChild(document.createElement('li'));
-                subsubmenu.appendChild(document.createElement('li'));
-        console.log('Testing close_menu on "submenu"');
-        console.log('    menu.style.display = ' + menu.style.display);
-        console.log('    submenu.style.display = ' + submenu.style.display);
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
-        console.log('  > close_menu(submenu) = ' + close_menu(submenu));
-        console.log('    menu.style.display = ' + menu.style.display);
-        console.log('    submenu.style.display = ' + submenu.style.display);
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
-        console.log('Resetting submenu.style.display to "block"');
-        submenu.style.display = 'block';
-        console.log('Resetting subsubmenu.style.display to "block"');
-        subsubmenu.style.display = 'block';
-        console.log('---');
-        console.log('Testing close_menu on "menu"');
-        console.log('    menu.style.display = ' + menu.style.display);
-        console.log('    submenu.style.display = ' + submenu.style.display);
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
-        console.log('  > close_menu(menu) = ' + close_menu(menu));
-        console.log('    menu.style.display = ' + menu.style.display)
-        console.log('    submenu.style.display = ' + submenu.style.display);
-        console.log('    subsubmenu.style.display = ' + subsubmenu.style.display);
-        console.log('---');
-    }
 
     /*
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

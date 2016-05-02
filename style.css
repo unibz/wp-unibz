@@ -71,12 +71,15 @@ noscript a , noscript a:hover{
 }
 
 #masthead {
-    box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
+    border-collapse: separate;
+    box-shadow: 0 1rem 1rem -1rem rgba(0,0,0,.75);
+    -webkit-box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
+    -moz-box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
     box-sizing:border-box;
+    width:100%;
     min-width:320px;
     min-height:4em;
     background-color:#fff;
-    width:100%;
     position:absolute;
     line-height:2.5em;
 }
@@ -188,7 +191,10 @@ noscript a , noscript a:hover{
     color:#fff;
     padding:1em;
     visibility:hidden;
-    box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
+    border-collapse: separate;
+    box-shadow: 0 1rem 1rem -1rem rgba(0,0,0,.75);
+    -webkit-box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
+    -moz-box-shadow: 0 .2rem 1.2rem -.6rem rgba(0,0,0,.75);
     transition:top 0.5s cubic-bezier(0.55, 0, 0.1, 1), visibility 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
@@ -270,6 +276,7 @@ main#main {
 }
 
 .page-sized {
+    width:100%;
     max-width:1170px;
     margin:0 auto;
 }
