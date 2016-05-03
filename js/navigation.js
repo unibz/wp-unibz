@@ -271,6 +271,13 @@
         }
     }
 
+    // run IE only code
+    function add_IE_quirks(){
+        if(navigator.userAgent.match(/MSIE/)){
+            document.getElementsByClassName('page_item_menu_toggle')[0].style.zIndex = 999;
+        }
+    }
+
 
     /*
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -291,6 +298,9 @@
     // build the page layout depending on the page size
     var page_size_class = get_page_size_class();
     adapt_page(page_size_class);
+
+    // run IE only code
+    add_IE_quirks();
 
     // Listen to the window resize event to adapt the page according to its size
     window.addEventListener('resize', function(evt) {
