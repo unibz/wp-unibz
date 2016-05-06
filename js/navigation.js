@@ -61,6 +61,10 @@
             top  = elem.parentNode.parentNode.getBoundingClientRect().height;
         }
         elem.style.top = (top-1) + 'px';
+        
+        if(screen.width<800) {
+            setTimeout(function() { elem.scrollIntoView(); }, 500);
+        }
 
         return true;
     }
