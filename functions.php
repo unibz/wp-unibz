@@ -98,6 +98,7 @@ add_action( 'after_setup_theme', 'unibz_s_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
+/*
 function unibz_s_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'unibz_s' ),
@@ -110,6 +111,7 @@ function unibz_s_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'unibz_s_widgets_init' );
+*/
 
 /**
  * Enqueue scripts and styles.
