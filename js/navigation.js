@@ -193,6 +193,14 @@
         }
     } 
 
+    /*
+     * Place the logo in the middle of the header bar
+     */
+    function set_logo_position() {
+       var height = document.getElementById("masthead").clientHeight;
+       var logoHeight = document.getElementById("logo").clientHeight;
+       document.getElementById("logo").style.top = (height-52)/2 + "px";
+    }
 
     /*
      * Style submenus and set their click event listeners
@@ -273,6 +281,9 @@
         for (var i=0; i<items.length; i++) {
             destination.appendChild(items[i]);
         }
+
+        // reset logo position
+        set_logo_position();
     }
 
     // run IE only code
@@ -305,6 +316,9 @@
 
     // run IE only code
     add_IE_quirks();
+
+    // set the logo position in the middle of the header
+    //set_logo_position();
 
     // Listen to the window resize event to adapt the page according to its size
     window.addEventListener('resize', function(evt) {

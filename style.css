@@ -79,24 +79,26 @@ noscript a , noscript a:hover{
     box-sizing:border-box;
     width:100%;
     min-width:320px;
-    min-height:4em;
+    min-height:6em;
     background-color:#fff;
     line-height:2.5em;
 }
 
 #logo {
-    height:3em;
+    height:52px;
+    width:6em;
+    max-width:6em;
     position:absolute;
     float:left;
     display:inline;
-    top:10px;
-    margin-left:1em;
+    top:23px;
+    margin-left:23px;
     z-index:1;
 }
 
 #lang_choice {
     position:absolute;
-    top:14px;
+    margin-top:0px;
     right:80px;
     width:5em;
     border:0;
@@ -145,11 +147,11 @@ noscript a , noscript a:hover{
     right:15px;
     background-color:transparent;
     background-image:url('img/menu.png');
-    background-size:40px 40px;
+    background-size:60px 60px;
     border-radius:8px;
     border:0;
-    width:40px;
-    height:40px;
+    width:60px;
+    height:60px;
     cursor:pointer;
 }
 
@@ -255,6 +257,8 @@ main#main {
 
 #colophon a, #colophon a:hover {
     color:#fff;
+    white-space:nowrap;
+    line-height:3em;
 }
 
 #colophon a.small {
@@ -331,6 +335,7 @@ main#main {
         padding:0;
         float:right;
         margin-right:0.4em !important;
+        margin-top:0px;
     }
 }
 
