@@ -113,14 +113,10 @@ noscript a , noscript a:hover{
     font-weight:lighter !important;
 }
 
-#lang_choice>ul.children {
-    width:5em !important;
-    left:initial !important;
-}
-
 #lang_choice>ul.children>li {
-    text-align:center !important;
+    text-align:right !important;
     padding:0;
+    padding-right: 2em;
 }
 
 .fake_page_item {
