@@ -143,15 +143,15 @@ noscript a , noscript a:hover{
 .page_item_menu_toggle button {
     float:right;
     position:relative;
-    top:-10px;
+    top:-5px;
     right:15px;
     background-color:transparent;
     background-image:url('img/menu.png');
-    background-size:60px 60px;
+    background-size:50px 50px;
     border-radius:8px;
     border:0;
-    width:60px;
-    height:60px;
+    width:50px;
+    height:50px;
     cursor:pointer;
 }
 
