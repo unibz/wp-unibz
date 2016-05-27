@@ -16,8 +16,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
         <div class="page-sized">
             
-            <a class="small underline" href="https://www.unibz.it/en/legal/imprint/">Imprint</a>
-            <a class="small underline" href="https://www.unibz.it/en/legal/privacy/">Privacy</a>
+            <a class="small underline" href="http://www.unibz.it/en/organisation/organisation/privacy/default.html">Privacy</a>
             <a class="small underline" href="<?php echo wp_login_url(); ?>">Log in</a>
         </div>
 	</footer><!-- #colophon -->
