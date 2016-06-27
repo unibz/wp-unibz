@@ -36,7 +36,7 @@
 							<span class="icon-bar"></span>                        
 						</button>
 
-						<a class="navbar-brand" href="#">
+						<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 							<div class="site-branding">
 								<svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 52" preserveAspectRatio="xMinYMid">
 									<title>Free University of Bozen - Bolzano</title>

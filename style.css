@@ -148,9 +148,12 @@ time:not(.published){
 }
 
 .widget-area li:before {
-	content:"↳";
+	/*
+	content:"→";
+	*/
+	content:"» ";
 	text-transform: uppercase;
-	font-size:2em;
+	font-size:1.5em;
 }
 
 .widget-area section {
