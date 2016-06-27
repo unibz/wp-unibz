@@ -9,20 +9,21 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); /* @TODO add new custom class to change background color to white */ ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="row">
 		<?php
-			if(has_post_thumbnail()) :
+			if(has_post_thumbnail() && !is_single()) :
 		?>
 		<div class="col-md-6">
-			<a class="post-thumbnail" href="" aria-hidden="true"><img src="<?php the_post_thumbnail_url(); ?>" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" style="width:100%; height:100%"></a>
+			<a class="post-thumbnail" href="<?php echo esc_url(get_permalink()) ?>" aria-hidden="true"><img src="<?php the_post_thumbnail_url(); ?>" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" style="width:100%; height:100%"></a>
 		</div>
+
 		<div class="col-md-6">
-		<?php
-			else:
-				echo "<div class='col-xs-12'>";
-			endif;
-		?>
+			<?php
+				else:
+					echo "<div class='col-xs-12'>";
+				endif;
+			?>
 
 			<header class="entry-header">
 				<?php
@@ -44,10 +45,24 @@
 			</header><!-- .entry-header -->
 
 			<div class="entry-content">
-				<?php the_excerpt(); ?>
+				<?php 
+					if ( is_single() ) {
+						the_content();
+					}
+					else {
+
+						// @TODO decide whether to link the excerpt with the single page?
+						//echo "<a href='" . esc_url( get_permalink() ) ."'>";
+						the_excerpt();
+						//echo "</a>";
+					}
+
+				?>
 			</div><!-- .entry-content -->
 
 			<footer class="entry-footer">
 				<?php unibz_entry_footer(); ?>
 			</footer><!-- .entry-footer -->
+		</div>
+	</div>
 </article><!-- #post-## -->

@@ -96,6 +96,7 @@ div.stretchy-wrapper > div {
     color: white;
     font-size: 24px;
     text-align: center;
+    margin-top:13%;
 }
 
 .unibrand{
@@ -125,11 +126,11 @@ div.stretchy-wrapper > div {
 	padding:1em;
 }
 
-.post1 {
-	margin-bottom: 16px;
-	margin-top: 16px;
-	padding:1em;
+/* change background color to white in single post page */
+body.single-post .post {
+	background-color:white;
 }
+
 
 time:not(.published){
 	display: none;
