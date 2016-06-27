@@ -1,8 +1,8 @@
 <?php
 /**
- * unibz_s Theme Customizer.
+ * unibz Theme Customizer.
  *
- * @package unibz_s
+ * @package unibz
  */
 
 /**
@@ -10,17 +10,17 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function unibz_s_customize_register( $wp_customize ) {
+function unibz_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
-add_action( 'customize_register', 'unibz_s_customize_register' );
+add_action( 'customize_register', 'unibz_customize_register' );
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function unibz_s_customize_preview_js() {
-	wp_enqueue_script( 'unibz_s_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+function unibz_customize_preview_js() {
+	wp_enqueue_script( 'unibz_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
-add_action( 'customize_preview_init', 'unibz_s_customize_preview_js' );
+add_action( 'customize_preview_init', 'unibz_customize_preview_js' );
