@@ -1,6 +1,3 @@
-hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-
-
 <?php
 /**
  * The template for displaying comments.
@@ -41,36 +38,41 @@ if ( post_password_required() ) {
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
 			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'unibz' ); ?></h2>
-			<div class="nav-links">
+			<ul class="nav-links pager">
 
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'unibz' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'unibz' ) ); ?></div>
+				<li class="nav-previous previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'unibz' ) ); ?></li>
+				<li class="nav-next next"><?php next_comments_link( esc_html__( 'Newer Comments', 'unibz' ) ); ?></li>
 
-			</div><!-- .nav-links -->
+			</ul><!-- .nav-links -->
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
 
 		<ol class="comment-list">
 			<?php
-				wp_list_comments( array(
+				$commentsHTML = wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,
-				) );
+					'echo' => false
+				));
+
+				// add bootstrap classes
+				$commentsHTML = preg_replace( '/comment-reply-link/', 'comment-reply-link btn btn-button unibrand', $commentsHTML);
+
+				echo $commentsHTML;
 			?>
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
 			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'unibz' ); ?></h2>
-			<div class="nav-links">
+			<ul class="nav-links pager">
 
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'unibz' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'unibz' ) ); ?></div>
+				<li class="nav-previous previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'unibz' ) ); ?></li>
+				<li class="nav-next next"><?php next_comments_link( esc_html__( 'Newer Comments', 'unibz' ) ); ?></li>
 
-			</div><!-- .nav-links -->
-		</nav><!-- #comment-nav-below -->
-		<?php
-		endif; // Check for comment navigation.
+			</ul><!-- .nav-links -->
+		</nav><!-- #comment-nav-above -->
+		<?php endif; // Check for comment navigation.
 
 	endif; // Check for have_comments().
 
@@ -86,8 +88,3 @@ if ( post_password_required() ) {
 	?>
 
 </div><!-- #comments -->
-
-
-
-
-hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
