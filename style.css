@@ -57,17 +57,17 @@ button.navbar-toggle {
 	right:0.5em;
 }
 
-#myNavbar>li {
+#primary-menu>li {
 	background:#007be4;
 	color:white;
 }
 
-.page_item {
+#primary-menu .page_item {
 	display:inline-block;
 	padding:1em;
 }
 
-.page_item a {
+#primary-menu .page_item a {
 	color:black;
 	font-weight: bold;
 }
@@ -78,6 +78,11 @@ button.navbar-toggle {
 
 .screen-reader-text {
 	display:none;
+}
+
+#content img {
+	max-width: 100%;
+	height:initial;
 }
 
 .hero {
@@ -140,7 +145,7 @@ div.stretchy-wrapper > div {
 	padding:1em;
 }
 
-.comment-list, .children {
+.comment-list, .comment-list .children {
 	list-style: none;
 	border-left:5px solid #dedede;
 	padding-left:10px;
@@ -248,12 +253,20 @@ address {
 	height: 150px;
 }
 
+.alignright {
+	float:right;
+}
 
+.alignleft {
+	float:left;
+}
 
+.aligncenter {
+    display: block;
+    margin: auto;
+}
 
-
-
-
+}
 
 @media screen and (min-width: 500px) {
 	div.stretchy-wrapper {
