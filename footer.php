@@ -18,10 +18,20 @@
 
 	<footer id="colophon" class="site-footer unibrand" role="contentinfo">
 		<div class="site-info container">
-					<!--<a href="https://wordpress.org/">Proudly powered by WordPress</a>
-					<span class="sep"> | </span>
-					Theme: unibz by <a href="http://underscores.me/" rel="designer">Underscores.me</a>.-->
-					<a href="#">Contacts</a>
+			<div class="row">
+					<div class="col-md-3 col-md-offset-2">
+						<strong><?php echo get_option( 'my_theme_settings' )['google_map_title'];?></strong>
+						<address><?php echo get_option( 'my_theme_settings' )['google_map_address'];?></address>
+					</div>
+					<div class="col-md-5">
+						<iframe src="<?php echo get_option( 'my_theme_settings' )['google_map'];?>" id="footer-map"></iframe>
+					</div>
+			</div>
+			<div class="row" style="margin-top:50px;">
+				<div class="col-xs-12 col-md-offset-2">
+					&copy; 2016 Free University of Bozen-Bolzano 
+				</div>
+			</div>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 	<script>

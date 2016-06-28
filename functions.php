@@ -140,3 +140,63 @@ function my_excerpt_length($length) {
 	return 100;
 }
 add_filter('excerpt_length', 'my_excerpt_length');
+
+
+/**
+ * Register Hero meta box.
+ */
+function unibz_register_hero_meta_box() { 
+    add_meta_box("hero-meta-box", "Hero", "unibz_hero_meta_box_display_callback", array("post", "page"), "side", "high", null);
+}
+add_action( 'add_meta_boxes', 'unibz_register_hero_meta_box' );
+ 
+/**
+ * Hero meta box display callback.
+ *
+ * @param WP_Post $object Current post object.
+ */
+function unibz_hero_meta_box_display_callback( $object ) {
+    wp_nonce_field(basename(__FILE__), "hero-meta-box-nonce");
+    ?>
+        <div>
+            <input name="hero-meta-box-title" type="text" value="<?php echo get_post_meta($object->ID, "hero-meta-box-title", true); ?>">
+            <label for="hero-meta-box-title">Title</label><br>
+            <input name="hero-meta-box-subtitle" type="text" value="<?php echo get_post_meta($object->ID, "hero-meta-box-subtitle", true); ?>">
+            <label for="hero-meta-box-subtitle">Subtitle</label><br>
+        </div>
+    <?php  
+}
+ 
+/**
+ * Save hero meta box content.
+ *
+ * @param int $post_id Post ID
+ */
+function unibz_save_hero_meta_box( $post_id ) {
+
+    if (!isset($_POST["hero-meta-box-nonce"]) || !wp_verify_nonce($_POST["hero-meta-box-nonce"], basename(__FILE__)))
+        return $post_id;
+
+    if(!current_user_can("edit_post", $post_id))
+        return $post_id;
+
+    if(defined("DOING_AUTOSAVE") && DOING_AUTOSAVE)
+        return $post_id;
+
+    $hero_meta_box_title = "";
+    $hero_meta_box_subtitle = "";
+
+    if(isset($_POST["hero-meta-box-title"]))
+    {
+        $hero_meta_box_title = $_POST["hero-meta-box-title"];
+    }   
+    update_post_meta($post_id, "hero-meta-box-title", $hero_meta_box_title);
+
+    if(isset($_POST["hero-meta-box-subtitle"]))
+    {
+        $hero_meta_box_subtitle = $_POST["hero-meta-box-subtitle"];
+    }   
+    update_post_meta($post_id, "hero-meta-box-subtitle", $hero_meta_box_subtitle);
+
+}
+add_action( 'save_post', 'unibz_save_hero_meta_box' );

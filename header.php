@@ -30,7 +30,7 @@
 				<div class="container">
 
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>                        
@@ -89,19 +89,35 @@
 		<div id="content" class="site-content">
 
 			<?php
-				if ( has_post_thumbnail() ) :
+				if ( has_post_thumbnail() || has_header_image() ) :
+
+					if (is_single() || is_page()) {
+						$HeroTitle = get_post_meta( get_the_ID(), 'hero-meta-box-title' )[0];
+						$HeroSubtitle = get_post_meta( get_the_ID(), 'hero-meta-box-subtitle' )[0];
+					}
+					else {
+
+						$HeroTitle = get_bloginfo( 'name' );
+						$HeroSubtitle = get_bloginfo( 'description', 'display' );
+					}
 			?>
 
-			<div class="hero" style="background-image:url('<?php the_post_thumbnail_url(); ?>');">
+
+
+			<div class="hero" style="background-image:url('<?php 
+				if(has_post_thumbnail()) {
+					the_post_thumbnail_url();
+				}
+				else {
+					echo get_header_image();
+				}
+			?>');">
 				<div class="stretchy-wrapper">
 					<div>
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-						<?php
-						$description = get_bloginfo( 'description', 'display' );
-						if ( $description || is_customize_preview() ) : ?>
-						<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-						<?php
-						endif; ?>
+						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo $HeroTitle; ?></a></h1>
+						<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
+						<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

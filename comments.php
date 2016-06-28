@@ -22,6 +22,7 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
+	<div class="comment-area">
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
@@ -34,6 +35,7 @@ if ( post_password_required() ) {
 				);
 			?>
 		</h2>
+	</div>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
