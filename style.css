@@ -232,11 +232,11 @@ textarea {
 }
 
 
-
-footer {
+#colophon {
 	padding-bottom: 3em;
 	padding-top: 3em;
 }
+
 
 #footer-map {
 	width:100%;
@@ -279,21 +279,21 @@ address {
 	    padding-bottom: 46%;
 	}
 
-	#myNavbar {
+	#primary-menu {
 		background:white;
 		color:#202020;
 	}
 
-	#myNavbar li {
+	#primary-menu li {
 		color:#202020 !important;
 	}
 
-	#myNavbar a, #myNavbar a:hover, #myNavbar a:focus{
+	#primary-menu a, #primary-menu a:hover, #primary-menu a:focus{
 		background:white !important;
 		color:#202020 !important;
 	}
 
-	#myNavbar>li {
+	#primary-menu>li {
 		position:relative;
 		left:30px;
 		top:12px;

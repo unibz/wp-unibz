@@ -49,9 +49,8 @@
 
 
 					<!-- @TODO FIX THIS -->
-					<?php wp_nav_menu( array( 'theme_location' => 'primary','menu_id' => 'primary-menu') ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary','menu_id' => 'primary-menu','menu_class' => 'navbar-nav unibrand collapse nav navbar-collapse') ); ?>
 
- 					
 					<?php 
 						global $polylang;
 						if(isset($polylang)):
