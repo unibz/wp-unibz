@@ -112,7 +112,7 @@
 				}
 			?>');">
 				<div class="stretchy-wrapper">
-					<div>
+					<div class="stretchy-wrapper-inner">
 						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo $HeroTitle; ?></a></h1>
 						<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
 						<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>

@@ -20,12 +20,42 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
 
+/*
+ * Import Font
+ */
+
+@font-face {
+  font-family: "DIN Web";
+  src: url("fonts/DINWebPro-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DIN Web";
+  src: url("fonts/DINWebPro.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DIN Web";
+  src: url("fonts/DINWebPro-Medium.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/*
+ * Reset
+ */
+
 html, body {
 	margin:0;
 	padding:0;
 	color:#202020;
 	min-width: 280px;
 	overflow-x: hidden;
+	font-family: "DIN Web";
 }
 
 #masthead {
@@ -85,6 +115,11 @@ button.navbar-toggle {
 	height:initial;
 }
 
+
+/*
+ * Hero
+ */
+
 .hero {
 	background-image:url('../img/hero.jpg');
 	background-size:cover;
@@ -102,19 +137,26 @@ button.navbar-toggle {
 	color:white;
 }
 
-div.stretchy-wrapper {
-    width: 100%;
-    padding-bottom: 60%; 
+.stretchy-wrapper {
     position: relative;
+    padding-bottom: 60%; 
+    width: 100%;
 }
  
-div.stretchy-wrapper > div {
+.stretchy-wrapper-inner {
     position: absolute;
-    top: 0; bottom: 0; left: 0; right: 0;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 1em;
     color: white;
     font-size: 24px;
     text-align: center;
-    margin-top:13%;
+}
+
+.site-description {
+	margin-bottom: 0;
 }
 
 .unibrand{
@@ -241,6 +283,7 @@ textarea {
 #footer-map {
 	width:100%;
 	height:250px;
+	border:0px;
 }
 
 address {
@@ -264,8 +307,6 @@ address {
 .aligncenter {
     display: block;
     margin: auto;
-}
-
 }
 
 @media screen and (min-width: 500px) {
