@@ -52,8 +52,8 @@
 					<?php wp_nav_menu( array( 'theme_location' => 'primary','menu_id' => 'primary-menu','menu_class' => 'navbar-nav unibrand collapse nav navbar-collapse') ); ?>
 
 					<?php 
-						global $polylang;
-						if(isset($polylang)):
+					global $polylang;
+					if(isset($polylang)):
 					?>
 					<ul class="nav navbar-nav navbar-right">
 						<!-- this element will be moved to the navigation menu by javascript -->
@@ -61,20 +61,20 @@
 							<button class="btn btn-default" type="button" data-toggle="dropdown" id="bottone"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<?php
-									/* language switcher */
-									pll_the_languages(array(
-										'display_names_as' => 'slug',
-										'show_flags' => 0,
-										'hide_current' => 1,
-										'hide_if_empty' => 0,
-										'hide_if_no_translation' => 0,
+								/* language switcher */
+								pll_the_languages(array(
+									'display_names_as' => 'slug',
+									'show_flags' => 0,
+									'hide_current' => 1,
+									'hide_if_empty' => 0,
+									'hide_if_no_translation' => 0,
 									));
 								?>
 							</ul>
 						</li>
 					</ul>
 					<?php 
-						endif;
+					endif;
 					?>
 
 
@@ -88,41 +88,41 @@
 		<div id="content" class="site-content">
 
 			<?php
-				if ( has_post_thumbnail() || has_header_image() ) :
+			if ( has_post_thumbnail() || has_header_image() ) :
 
-					if (is_single() || is_page()) {
-						$HeroTitle = get_post_meta( get_the_ID(), 'hero-meta-box-title' )[0];
-						$HeroSubtitle = get_post_meta( get_the_ID(), 'hero-meta-box-subtitle' )[0];
-					}
-					else {
-
-						$HeroTitle = get_bloginfo( 'name' );
-						$HeroSubtitle = get_bloginfo( 'description', 'display' );
-					}
-			?>
-
-
-
-			<div class="hero" style="background-image:url('<?php 
-				if(has_post_thumbnail()) {
-					the_post_thumbnail_url();
+				if (is_single() || is_page()) {
+					$HeroTitle = get_post_meta( get_the_ID(), 'hero-meta-box-title' )[0];
+					$HeroSubtitle = get_post_meta( get_the_ID(), 'hero-meta-box-subtitle' )[0];
 				}
 				else {
-					echo get_header_image();
+
+					$HeroTitle = get_bloginfo( 'name' );
+					$HeroSubtitle = get_bloginfo( 'description', 'display' );
 				}
-			?>');">
-				<div class="stretchy-wrapper">
-					<div class="stretchy-wrapper-inner">
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo $HeroTitle; ?></a></h1>
-						<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
-						<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
-						<?php endif; ?>
+				?>
+
+
+
+				<div class="hero" style="background-image:url('<?php 
+					if(has_post_thumbnail()) {
+						the_post_thumbnail_url();
+					}
+					else {
+						echo get_header_image();
+					}
+					?>');">
+					<div class="stretchy-wrapper">
+						<div class="stretchy-wrapper-inner">
+							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo $HeroTitle; ?></a></h1>
+							<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
+								<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
-			</div>
-			<?php
+				<?php
 				endif;
-			?>
+				?>
 
-			<div class="container">
-				<div class="row">
+				<div class="container">
+					<div class="row">

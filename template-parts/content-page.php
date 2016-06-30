@@ -34,7 +34,7 @@
 						esc_html__( 'Edit %s', 'unibz' ),
 						the_title( '<span class="screen-reader-text">"', '"</span>', false )
 					),
-					'<span class="edit-link">',
+					'<span class="edit-link btn unibrand">',
 					'</span>'
 				);
 			?>
