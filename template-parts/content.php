@@ -14,11 +14,11 @@
 		<?php
 			if(has_post_thumbnail() && !is_single()) :
 		?>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<a class="post-thumbnail" href="<?php echo esc_url(get_permalink()) ?>" aria-hidden="true"><img src="<?php the_post_thumbnail_url(); ?>" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" style="width:100%; height:100%"></a>
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<?php
 				else:
 					echo "<div class='col-xs-12'>";

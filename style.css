@@ -56,6 +56,7 @@ html, body {
 	min-width: 280px;
 	overflow-x: hidden;
 	font-family: "DIN Web";
+	font-size: 17px;
 }
 
 #masthead {
@@ -115,6 +116,11 @@ button.navbar-toggle {
 	height:initial;
 }
 
+article img {
+	max-width: 17em;
+	max-height: 17em;
+}
+
 
 /*
  * Hero
@@ -126,6 +132,7 @@ button.navbar-toggle {
 	background-position:center;
 	color:white;
 	text-align:center;
+	margin-bottom: 10px;
 	/*padding:5em;*/
 }
 
@@ -181,10 +188,13 @@ button.navbar-toggle {
 }
 
 .post {
-	background-color: #f5f5f5;
-	margin-bottom: 16px;
-	margin-top: 16px;
+	margin-bottom: 2em;
+	margin-top: 2em;
 	padding:1em;
+}
+
+.post {
+	margin-top: 1px;
 }
 
 .comment-list, .comment-list .children {
@@ -222,6 +232,7 @@ button.navbar-toggle {
 	display:table-cell;
 }
 
+
 /* change background color to white in single post page */
 body.single-post .post {
 	background-color:white;
@@ -237,6 +248,10 @@ time:not(.published){
 	border: 0px;
 	background-color: white;
 	margin-top: 6px;
+}
+
+.comments-link {
+	padding-right: 1em;
 }
 
 .widget-area ul {
@@ -264,9 +279,21 @@ time:not(.published){
     text-align: center;
 }
 
+.widget-area {
+	padding-top: 20px;
+}
+
 .widget-area table, .widget-area th, .widget-area td {
     border: 1px solid #dbdbdb;
     padding:0.5em;
+}
+
+.widget-area .widget-title {
+	margin-top: 0px;
+}
+
+.widget-area section:first-child {
+	padding-top: 0px;
 }
 
 textarea {
@@ -296,17 +323,24 @@ address {
 	height: 150px;
 }
 
+
+/*
+ * Images inside of a text
+ */
+
 .alignright {
 	float:right;
+	margin: 10px 0px 10px 10px;
 }
 
 .alignleft {
 	float:left;
+	margin: 10px 10px 10px 0px;
 }
 
 .aligncenter {
     display: block;
-    margin: auto;
+    margin: 10px;
 }
 
 @media screen and (min-width: 500px) {

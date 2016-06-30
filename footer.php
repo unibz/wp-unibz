@@ -19,16 +19,16 @@
 	<footer id="colophon" class="site-footer unibrand" role="contentinfo">
 		<div class="site-info container">
 			<div class="row">
-					<div class="col-md-3 col-md-offset-2">
+					<div class="col-md-5">
 						<strong><?php echo get_option( 'my_theme_settings' )['google_map_title'];?></strong>
 						<address><?php echo get_option( 'my_theme_settings' )['google_map_address'];?></address>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-7">
 						<iframe src="<?php echo get_option( 'my_theme_settings' )['google_map'];?>" id="footer-map"></iframe>
 					</div>
 			</div>
 			<div class="row" style="margin-top:50px;">
-				<div class="col-xs-12 col-md-offset-2">
+				<div class="col-xs-12">
 					&copy; 2016 Free University of Bozen-Bolzano 
 				</div>
 			</div>
