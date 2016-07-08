@@ -137,7 +137,12 @@ require get_template_directory() . '/inc/jetpack.php';
 
 // Set excerpt length
 function my_excerpt_length($length) {
-	return 100;
+	if(!has_post_thumbnail()) {
+		return 100;
+	}
+	else {
+		return 50;
+	}
 }
 add_filter('excerpt_length', 'my_excerpt_length');
 
@@ -200,3 +205,22 @@ function unibz_save_hero_meta_box( $post_id ) {
 
 }
 add_action( 'save_post', 'unibz_save_hero_meta_box' );
+
+
+/**
+ *
+ * Add class if menu item has children
+ *
+ */
+
+add_filter( 'wp_nav_menu_objects', 'add_has_children_to_nav_items' );
+
+function add_has_children_to_nav_items( $items )
+{
+    $parents = wp_list_pluck( $items, 'menu_item_parent');
+
+    foreach ( $items as $item )
+        in_array( $item->ID, $parents ) && $item->classes[] = 'anna amin';
+
+    return $items;
+}

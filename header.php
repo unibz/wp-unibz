@@ -49,11 +49,23 @@
 
 
 					<!-- @TODO FIX THIS -->
-					<?php wp_nav_menu( array( 'theme_location' => 'primary','menu_id' => 'primary-menu','menu_class' => 'navbar-nav unibrand collapse nav navbar-collapse') ); ?>
-
 					<?php 
-					global $polylang;
-					if(isset($polylang)):
+						wp_nav_menu(
+							array(
+								'theme_location' => 'primary',
+								'container_id' => 'primary-menu',
+								'container_class' => 'nav navbar-nav collapse navbar-collapse unibrand',
+								'menu_class' => 'nav navbar-nav collapse navbar-collapse unibrand',
+								'menu_id' => 'primary-menu',
+								'container' => 'div',
+								'fallback' => function($args) {
+
+								}
+							)
+						);
+
+						global $polylang;
+						if(isset($polylang)):
 					?>
 					<ul class="nav navbar-nav navbar-right">
 						<!-- this element will be moved to the navigation menu by javascript -->
@@ -74,7 +86,7 @@
 						</li>
 					</ul>
 					<?php 
-					endif;
+						endif;
 					?>
 
 
