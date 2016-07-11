@@ -16,7 +16,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<?php wp_head(); ?>
 </head>
 
@@ -49,7 +48,9 @@
 
 
 					<!-- @TODO FIX THIS -->
-					<?php 
+
+					<?php
+						/* 
 						wp_nav_menu(
 							array(
 								'theme_location' => 'primary',
@@ -58,15 +59,25 @@
 								'menu_class' => 'nav navbar-nav collapse navbar-collapse unibrand',
 								'menu_id' => 'primary-menu',
 								'container' => 'div',
-								'fallback' => function($args) {
-
-								}
+								'walker' => new MyWalker()
+							)
+						);
+						*/
+						wp_nav_menu(
+							array(
+								'container_id' => 'primary-menu',
+								'container_class' => 'collapse navbar-collapse',
+								'menu_class' => 'nav navbar-nav',
+								'menu_id' => '',
+								//'walker' => new MyWalker(),
+								//'fallback_cb' => wp_page_menu(array( 'walker' => new MyWalker() )),
 							)
 						);
 
 						global $polylang;
 						if(isset($polylang)):
 					?>
+
 					<ul class="nav navbar-nav navbar-right">
 						<!-- this element will be moved to the navigation menu by javascript -->
 						<li>

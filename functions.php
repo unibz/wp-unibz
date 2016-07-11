@@ -102,8 +102,17 @@ add_action( 'widgets_init', 'unibz_widgets_init' );
  * Enqueue scripts and styles.
  */
 function unibz_scripts() {
-	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.css');
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css');
+	wp_enqueue_style( 'bootstrap-theme-css', get_template_directory_uri() . '/css/bootstrap-theme.min.css');
+//	wp_enqueue_style( 'octicons-css', get_template_directory_uri() . '/css/octicons.css');
+//	wp_enqueue_style( 'zenburn-css', get_template_directory_uri() . '/css/zenburn.css');
+	wp_enqueue_style( 'bootstrap-submenu-css', get_template_directory_uri() . '/css/bootstrap-submenu.min.css');
+	wp_enqueue_style( 'docs-css', get_template_directory_uri() . '/css/docs.css');
 	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array(), '20151215', true );
+	wp_enqueue_script( 'jquery-js', get_template_directory_uri() . '/js/jquery.js', array(), '20151215', true );
+//	wp_enqueue_script( 'highlight-js', get_template_directory_uri() . '/js/highlight.min.js', array(), '20151215', true );
+	wp_enqueue_script( 'bootstrap-submenu-js', get_template_directory_uri() . '/js/bootstrap-submenu.js', array(), '20151215', true );
+	wp_enqueue_script( 'docs-js', get_template_directory_uri() . '/js/docs.js', array(), '20151215', true );
 	wp_enqueue_style( 'unibz-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'unibz_scripts' );
@@ -209,18 +218,68 @@ add_action( 'save_post', 'unibz_save_hero_meta_box' );
 
 /**
  *
- * Add class if menu item has children
+ * Add class if the menu has children
  *
  */
 
-add_filter( 'wp_nav_menu_objects', 'add_has_children_to_nav_items' );
 
 function add_has_children_to_nav_items( $items )
 {
+/*
+echo "<pre>";
+
+        var_dump($items);
+
+echo "</pre>";
+*/
     $parents = wp_list_pluck( $items, 'menu_item_parent');
 
-    foreach ( $items as $item )
-        in_array( $item->ID, $parents ) && $item->classes[] = 'anna amin';
-
+    foreach ( $items as $item ) {
+        in_array( $item->ID, $parents ) && $item->classes[] = 'AAAAA';
+    }
     return $items;
 }
+add_filter( 'wp_nav_menu_objects', 'add_has_children_to_nav_items' );
+
+
+
+
+// my walker to build the navigation menu
+
+class MyWalker extends Walker_Nav_Menu {
+    var $db_fields = array (
+        'parent' => 'menu_item_parent', 
+        'id'     => 'db_id'
+    );
+
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$output .= "<ul class='dropdown-menu'>\n";
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$output .= "</ul>\n";
+
+	}
+
+	function start_el( &$output, $item, $depth = 0, $args = array(), $current_object_id = 0 ) {
+
+echo "<pre>";
+var_dump($item);
+echo "</pre>";
+
+		if(array_search($item->classes, 'page_item_has_children') || array_search('menu-item-has-children', $item->classes)) {
+			$isDropDown = "class='dropdown-submenu'";
+		}
+
+		$output .= "<li $isDropDown><a tabindex='0' data-toggle='dropdown' data-submenu=''>".$item->title."</a>\n";
+	}
+
+	function end_el( &$output, $item, $depth = 0, $args = array() ) {
+		$output .= "</li>\n";
+	}
+}
+
+
+
+
+
