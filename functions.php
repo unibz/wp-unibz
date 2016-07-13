@@ -102,18 +102,15 @@ add_action( 'widgets_init', 'unibz_widgets_init' );
  * Enqueue scripts and styles.
  */
 function unibz_scripts() {
-	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css');
-	wp_enqueue_style( 'bootstrap-theme-css', get_template_directory_uri() . '/css/bootstrap-theme.min.css');
-//	wp_enqueue_style( 'octicons-css', get_template_directory_uri() . '/css/octicons.css');
-//	wp_enqueue_style( 'zenburn-css', get_template_directory_uri() . '/css/zenburn.css');
-	wp_enqueue_style( 'bootstrap-submenu-css', get_template_directory_uri() . '/css/bootstrap-submenu.min.css');
-	wp_enqueue_style( 'docs-css', get_template_directory_uri() . '/css/docs.css');
-	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array(), '20151215', true );
-	wp_enqueue_script( 'jquery-js', get_template_directory_uri() . '/js/jquery.js', array(), '20151215', true );
-//	wp_enqueue_script( 'highlight-js', get_template_directory_uri() . '/js/highlight.min.js', array(), '20151215', true );
-	wp_enqueue_script( 'bootstrap-submenu-js', get_template_directory_uri() . '/js/bootstrap-submenu.js', array(), '20151215', true );
-	wp_enqueue_script( 'docs-js', get_template_directory_uri() . '/js/docs.js', array(), '20151215', true );
-	wp_enqueue_style( 'unibz-style', get_stylesheet_uri() );
+	// CSS
+	wp_enqueue_style( 'bootstrap-css', 			get_template_directory_uri() . '/css/bootstrap.min.css');
+	wp_enqueue_style( 'bootstrap-theme-css', 	get_template_directory_uri() . '/css/bootstrap-theme.min.css');
+	wp_enqueue_style( 'bootstrap-submenu-css', 	get_template_directory_uri() . '/css/bootstrap-submenu.min.css');
+	wp_enqueue_style( 'unibz-style', 			get_stylesheet_uri());
+	//JS
+	wp_enqueue_script( 'bootstrap-js', 			get_template_directory_uri() . '/js/bootstrap.js', 			array(), null, true );
+	wp_enqueue_script( 'jquery-js', 			get_template_directory_uri() . '/js/jquery.js', 			array(), null, true );
+	wp_enqueue_script( 'submenu-js', 			get_template_directory_uri() . '/js/submenu.js', 			array(), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'unibz_scripts' );
 

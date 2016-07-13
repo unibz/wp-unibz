@@ -115,14 +115,9 @@ button.navbar-toggle {
 	display:none;
 }
 
-/*
- * Text images
- */
-
-/*#content img {
-	max-width: 100%;
-	height:initial;
-}*/
+#content>.container {
+	margin-top:1em;
+}
 
 .entry-meta {
 	margin: 1.1em 0;
@@ -131,6 +126,10 @@ button.navbar-toggle {
 .entry-meta-nopicture {
 	margin-bottom:-0.8em;
 }
+
+/*
+ * Text images
+ */
 
 article img {
 	max-width: 100%;
