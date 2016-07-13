@@ -1,3 +1,6 @@
+<!--
+	content.php
+-->
 <?php
 /**
  * Template part for displaying posts.

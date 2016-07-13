@@ -1,3 +1,6 @@
+<!--
+	search.php
+-->
 <?php
 /**
  * The template for displaying search results pages.

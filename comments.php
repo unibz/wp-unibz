@@ -1,3 +1,6 @@
+<!--
+	comments.php
+-->
 <?php
 /**
  * The template for displaying comments.

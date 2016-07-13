@@ -1,3 +1,6 @@
+<!--
+	single.php
+-->
 <?php
 /**
  * The template for displaying all single posts.
@@ -9,7 +12,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area col-md-8">
+	<div id="primary" class="content-area col-md-8 padding-collapse">
 		<main id="main" class="site-main" role="main">
 
 		<?php

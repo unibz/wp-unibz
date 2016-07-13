@@ -1,3 +1,6 @@
+<!--
+	content-none.php
+-->
 <?php
 /**
  * Template part for displaying a message that posts cannot be found.
