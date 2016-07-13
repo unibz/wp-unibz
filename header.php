@@ -54,29 +54,16 @@
 					<!-- @TODO FIX THIS -->
 
 					<?php
-						/* 
-						wp_nav_menu(
-							array(
-								'theme_location' => 'primary',
-								'container_id' => 'primary-menu',
-								'container_class' => 'nav navbar-nav collapse navbar-collapse unibrand',
-								'menu_class' => 'nav navbar-nav collapse navbar-collapse unibrand',
-								'menu_id' => 'primary-menu',
-								'container' => 'div',
-								'walker' => new MyWalker()
-							)
-						);
-						*/
 						wp_nav_menu(
 							array(
 								'container_id' => 'primary-menu',
 								'container_class' => 'collapse navbar-collapse',
 								'menu_class' => 'nav navbar-nav',
 								'menu_id' => '',
-								//'walker' => new MyWalker(),
-								//'fallback_cb' => wp_page_menu(array( 'walker' => new MyWalker() )),
+								'walker' => new MyWalker(),
 							)
 						);
+
 
 						global $polylang;
 						if(isset($polylang)):
@@ -104,9 +91,6 @@
 						endif;
 					?>
 
-
-
-
 				</div>
 			</nav>
 
@@ -115,41 +99,47 @@
 		<div id="content" class="site-content">
 
 			<?php
-			if ( has_post_thumbnail() || has_header_image() ) :
+				// display the hero if and only if it has to be shown
+				if (
+					// if the page is single page or single post, and has a featured image, and the hero is set to be shown
+					((is_single() || is_page()) && has_post_thumbnail() && get_post_meta( get_the_ID(), 'hero-meta-box-display' )[0])
+					|| // or
+					// if the page is a blog/archive/search page and the blog has a header image
+				    (!is_single() && !is_page() && has_header_image())
+				) :
 
+				// get the right values for hero-title and hero-description
 				if (is_single() || is_page()) {
 					$HeroTitle = get_post_meta( get_the_ID(), 'hero-meta-box-title' )[0];
 					$HeroSubtitle = get_post_meta( get_the_ID(), 'hero-meta-box-subtitle' )[0];
 				}
 				else {
-
-					$HeroTitle = get_bloginfo( 'name' );
+					$HeroTitle = get_bloginfo( 'name', 'display');
 					$HeroSubtitle = get_bloginfo( 'description', 'display' );
 				}
-				?>
+			?>
 
-
-
-				<div class="hero" style="background-image:url('<?php 
-					if(has_post_thumbnail() && (is_single() || is_page())) {
-						the_post_thumbnail_url();
-					}
-					else {
-						echo get_header_image();
-					}
-					?>');">
-					<div class="stretchy-wrapper">
-						<div class="stretchy-wrapper-inner">
-							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo $HeroTitle; ?></a></h1>
-							<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
-								<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
-							<?php endif; ?>
-						</div>
+			<div class="hero" style="background-image:url('<?php 
+				if(has_post_thumbnail() && (is_single() || is_page())) {
+					the_post_thumbnail_url();
+				}
+				else {
+					echo get_header_image();
+				}
+				?>');">
+				<div class="stretchy-wrapper">
+					<div class="stretchy-wrapper-inner">
+						<h1 class="site-title"><?php echo $HeroTitle; ?></h1>
+						<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
+							<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
+						<?php endif; ?>
 					</div>
 				</div>
-				<?php
+			</div>
+			<?php
 				endif;
-				?>
+				// the code above is executed only if and only if the hero has to be shown
+			?>
 
-				<div class="container">
-					<div class="row">
+			<div class="container">
+				<div class="row">

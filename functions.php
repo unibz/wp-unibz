@@ -177,6 +177,8 @@ function unibz_hero_meta_box_display_callback( $object ) {
             <label for="hero-meta-box-title">Title</label><br>
             <input name="hero-meta-box-subtitle" type="text" value="<?php echo get_post_meta($object->ID, "hero-meta-box-subtitle", true); ?>">
             <label for="hero-meta-box-subtitle">Subtitle</label><br>
+            <input name="hero-meta-box-display" type="checkbox" value="1" <?php echo (get_post_meta($object->ID, "hero-meta-box-display", true) ? 'checked' : ''); ?>>
+            <label for="hero-meta-box-display">Display Hero?</label><br>
         </div>
     <?php  
 }
@@ -199,6 +201,7 @@ function unibz_save_hero_meta_box( $post_id ) {
 
     $hero_meta_box_title = "";
     $hero_meta_box_subtitle = "";
+    $hero_meta_box_display = true;
 
     if(isset($_POST["hero-meta-box-title"]))
     {
@@ -212,40 +215,15 @@ function unibz_save_hero_meta_box( $post_id ) {
     }   
     update_post_meta($post_id, "hero-meta-box-subtitle", $hero_meta_box_subtitle);
 
+
+    $hero_meta_box_display = $_POST["hero-meta-box-display"];
+    update_post_meta($post_id, "hero-meta-box-display", $hero_meta_box_display);
+
 }
 add_action( 'save_post', 'unibz_save_hero_meta_box' );
 
 
-/**
- *
- * Add class if the menu has children
- *
- */
-
-
-function add_has_children_to_nav_items( $items )
-{
-/*
-echo "<pre>";
-
-        var_dump($items);
-
-echo "</pre>";
-*/
-    $parents = wp_list_pluck( $items, 'menu_item_parent');
-
-    foreach ( $items as $item ) {
-        in_array( $item->ID, $parents ) && $item->classes[] = 'AAAAA';
-    }
-    return $items;
-}
-add_filter( 'wp_nav_menu_objects', 'add_has_children_to_nav_items' );
-
-
-
-
 // my walker to build the navigation menu
-
 class MyWalker extends Walker_Nav_Menu {
     var $db_fields = array (
         'parent' => 'menu_item_parent', 
@@ -262,16 +240,17 @@ class MyWalker extends Walker_Nav_Menu {
 	}
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $current_object_id = 0 ) {
-
-echo "<pre>";
-var_dump($item);
-echo "</pre>";
-
-		if(array_search($item->classes, 'page_item_has_children') || array_search('menu-item-has-children', $item->classes)) {
-			$isDropDown = "class='dropdown-submenu'";
+		
+		if(array_search('menu-item-has-children', $item->classes)) {
+			$item->classes[] = 'dropdown-submenu';
+			$link = "<a tabindex='0' data-toggle='dropdown' data-submenu=''>{$item->title}</a>\n";
+		}
+		else {
+			$link = "<a href='{$item->url}'>{$item->title}</a>\n";
 		}
 
-		$output .= "<li $isDropDown><a tabindex='0' data-toggle='dropdown' data-submenu=''>".$item->title."</a>\n";
+		$output .= '<li class="' . implode($item->classes, ' ') . '">'.$link;
+//echo "<pre>";var_dump($item);
 	}
 
 	function end_el( &$output, $item, $depth = 0, $args = array() ) {

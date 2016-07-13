@@ -329,9 +329,9 @@ time:not(.published){
 }
 
 .widget-area table, .widget-area th, .widget-area td {
-    border: 1px solid #dbdbdb;
     padding:0.5em;
 }
+
 
 .widget-area .widget-title {
 	margin-top: 0px;
