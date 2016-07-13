@@ -189,6 +189,10 @@ article img {
 	margin-bottom: 0;
 }
 
+.page-header {
+    margin-top:20px;
+}
+
 
 /*
  * CSS classes for button
@@ -222,6 +226,10 @@ article img {
 
 .post {
 	padding: 0 1em 1em 1em;
+}
+
+.cat-links {
+    display: block;
 }
 
 /*
@@ -282,11 +290,9 @@ time:not(.published){
  * Class for dropdown menus (that at the moment don't work)
  */
 
-#bottone.btn.btn-default.dropdown-toggle {
-	font-weight: bold;
-	border: 0px;
-	background-color: white;
-	margin-top: 6px;
+#language-switch-button {
+    font-weight: bold;
+    background-color: white;
 }
 
 /*

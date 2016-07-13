@@ -81,7 +81,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<!-- this element will be moved to the navigation menu by javascript -->
 						<li>
-							<button class="btn btn-default" type="button" data-toggle="dropdown" id="bottone"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
+							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<?php
 								/* language switcher */
@@ -127,7 +127,7 @@
 
 
 				<div class="hero" style="background-image:url('<?php 
-					if(has_post_thumbnail()) {
+					if(has_post_thumbnail() && (is_single() || is_page())) {
 						the_post_thumbnail_url();
 					}
 					else {
