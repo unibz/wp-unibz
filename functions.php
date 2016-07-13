@@ -104,8 +104,6 @@ add_action( 'widgets_init', 'unibz_widgets_init' );
 function unibz_scripts() {
 	// CSS
 	wp_enqueue_style( 'bootstrap-css', 			get_template_directory_uri() . '/css/bootstrap.min.css');
-	wp_enqueue_style( 'bootstrap-theme-css', 	get_template_directory_uri() . '/css/bootstrap-theme.min.css');
-	wp_enqueue_style( 'bootstrap-submenu-css', 	get_template_directory_uri() . '/css/bootstrap-submenu.min.css');
 	wp_enqueue_style( 'unibz-style', 			get_stylesheet_uri());
 	//JS
 	wp_enqueue_script( 'bootstrap-js', 			get_template_directory_uri() . '/js/bootstrap.js', 			array(), null, true );
@@ -240,7 +238,7 @@ class MyWalker extends Walker_Nav_Menu {
 		
 		if(array_search('menu-item-has-children', $item->classes)) {
 			$item->classes[] = 'dropdown-submenu';
-			$link = "<a tabindex='0' data-toggle='dropdown' data-submenu=''>{$item->title}</a>\n";
+			$link = "<a tabindex='0' data-toggle='dropdown' data-submenu=''>{$item->title} <span class='caret'></span></a>\n";
 		}
 		else {
 			$link = "<a href='{$item->url}'>{$item->title}</a>\n";

@@ -97,15 +97,23 @@ button.navbar-toggle {
 	color:white;
 }
 
-#primary-menu .page_item, #primary-menu .menu-item {
-	display:inline-block;
+#primary-menu .menu-item {
+	display:block;
 	padding:1em;
 }
 
-#primary-menu .page_item a, #primary-menu .menu-item a {
+#primary-menu .menu-item a {
 	color:black;
 	font-weight: bold;
+	background:white !important;
 }
+
+.dropdown-menu {
+	width:100%;
+
+}
+
+
 
 .icon-bar {
 	background:black;
