@@ -87,12 +87,6 @@ html, body {
 	top:1px;
 }
 
-button.navbar-toggle {
-	position:relative;
-	top:0.6em;
-	right:0.5em;
-}
-
 #primary-menu>li {
 	background:#007be4;
 	color:white;
@@ -110,8 +104,7 @@ button.navbar-toggle {
 }
 
 .dropdown-menu {
-	width:100%;
-
+	min-width:100%;
 }
 
 
@@ -301,6 +294,7 @@ time:not(.published){
 #language-switch-button {
     font-weight: bold;
     background-color: white;
+    float:right;
 }
 
 /*
