@@ -61,6 +61,7 @@ html, body {
 
 #masthead {
 	box-shadow:0 .08rem .9rem rgba(0,0,0,.2);
+	font-size:0.8em;
 }
 
 #masthead ul, #masthead ol {
@@ -81,9 +82,9 @@ html, body {
 }
 
 #logo {
-	width:45px;
+	width:50px;
 	position:relative;
-	top:3px;
+	top:1px;
 }
 
 button.navbar-toggle {
