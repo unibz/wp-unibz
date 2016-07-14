@@ -61,7 +61,6 @@ html, body {
 
 #masthead {
 	box-shadow:0 .08rem .9rem rgba(0,0,0,.2);
-	font-size:0.8em;
 	min-height:70px;
 }
 
@@ -91,6 +90,12 @@ html, body {
 	width:50px;
 	position:relative;
 	top:1px;
+	z-index:1000;
+}
+
+#primary-menu {
+    position: relative;
+    top: 22px
 }
 
 #primary-menu>li {
@@ -123,7 +128,7 @@ html, body {
 }
 
 #content>.container {
-	margin-top:1em;
+	margin-top:2em;
 }
 
 .entry-meta {
@@ -303,10 +308,7 @@ time:not(.published){
 }
 
 .navbar-header .dropdown-menu {
-	left:initial;
-	right:5px;
-	width: 5em!important;
-	min-width:5em!important; 
+
 }
 
 /*
@@ -420,7 +422,7 @@ hr {
 
 
 @media screen and (max-width: 500px) {
-	.padding-collapse-xs {
+	.padding-collapse-sm {
 	    padding: 0px;
 	}
 }	
@@ -462,6 +464,8 @@ hr {
 	#primary-menu {
 		background:white;
 		color:#202020;
+	    position:relative;
+	    top:-14px;
 	}
 
 	#primary-menu li {
@@ -473,11 +477,12 @@ hr {
 		color:#202020 !important;
 	}
 
-	#primary-menu>li {
+	#primary-menu>ul>li {
 		position:relative;
 		left:30px;
 		top:12px;
 		font-weight: bold;
+		font-size:0.8em;
 	}
 }
 

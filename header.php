@@ -48,7 +48,13 @@
 
 
 
-					<div class="navbar-header col-xs-11 col-sm-2 col-sm-push-9">
+					<div class="navbar-header col-xs-10 col-sm-2 col-sm-push-9">
+
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>                        
+						</button>
 
 						<?php global $polylang; if(isset($polylang)): ?>
 							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
@@ -66,11 +72,7 @@
 							</ul>
 						<?php endif; ?>
 
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>                        
-						</button>
+
 					</div><!--  -->
 
 
@@ -82,8 +84,8 @@
 							wp_nav_menu(
 								array(
 									'container_id' => 'primary-menu',
-									'container_class' => 'collapse navbar-collapse',
-									'menu_class' => 'nav navbar-nav unibrand',
+									'container_class' => 'collapse navbar-collapse unibrand',
+									'menu_class' => 'nav navbar-nav',
 									'menu_id' => '',
 									'walker' => new MyWalker(),
 								)
