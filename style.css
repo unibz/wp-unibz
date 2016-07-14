@@ -79,11 +79,12 @@ html, body {
 
 .navbar-header {
 	position:relative;
-	top:18px;
+	top:22px;
 }
 
 .navbar-toggle {
 	margin-top:0!important;
+	padding: 7px!important 10px!important;
 }
 
 #logo {
@@ -115,6 +116,10 @@ html, body {
 
 .dropdown-menu {
 	min-width:100%;
+}
+
+.current-menu-item {
+    text-decoration: underline;
 }
 
 
@@ -305,10 +310,18 @@ time:not(.published){
     font-weight: bold;
     background-color: white;
     float:right;
+    border:0;
+    text-transform: uppercase;
+    margin-top:0.1em;
 }
 
 .navbar-header .dropdown-menu {
-
+	left:initial;
+	top:82%;
+	right:74px;
+	width: 3.8em!important;
+	min-width:3.8em!important; 
+    text-transform: uppercase;
 }
 
 /*
@@ -483,6 +496,11 @@ hr {
 		top:12px;
 		font-weight: bold;
 		font-size:0.8em;
+	}
+
+	.navbar-header .dropdown-menu {
+		top:100%;
+		right:15px;
 	}
 }
 

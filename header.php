@@ -49,30 +49,31 @@
 
 
 					<div class="navbar-header col-xs-10 col-sm-2 col-sm-push-9">
-
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>                        
-						</button>
+						<div class="">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>                        
+							</button>
+						</div>
 
 						<?php global $polylang; if(isset($polylang)): ?>
-							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
-							<ul class="dropdown-menu unibrand">
-								<?php
-								/* language switcher */
-								pll_the_languages(array(
-									'display_names_as' => 'slug',
-									'show_flags' => 0,
-									'hide_current' => 1,
-									'hide_if_empty' => 0,
-									'hide_if_no_translation' => 0,
-									));
-								?>
-							</ul>
+							<div class="">
+								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
+								<ul class="dropdown-menu unibrand">
+									<?php
+									/* language switcher */
+									pll_the_languages(array(
+										'display_names_as' => 'slug',
+										'show_flags' => 0,
+										'hide_current' => 1,
+										'hide_if_empty' => 0,
+										'hide_if_no_translation' => 0,
+										));
+									?>
+								</ul>
+							</div>
 						<?php endif; ?>
-
-
 					</div><!--  -->
 
 
