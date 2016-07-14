@@ -62,6 +62,7 @@ html, body {
 #masthead {
 	box-shadow:0 .08rem .9rem rgba(0,0,0,.2);
 	font-size:0.8em;
+	min-height:70px;
 }
 
 #masthead ul, #masthead ol {
@@ -78,7 +79,12 @@ html, body {
 }
 
 .navbar-header {
-	height:70px;
+	position:relative;
+	top:18px;
+}
+
+.navbar-toggle {
+	margin-top:0!important;
 }
 
 #logo {
@@ -100,7 +106,6 @@ html, body {
 #primary-menu .menu-item a {
 	color:black;
 	font-weight: bold;
-	background:white !important;
 }
 
 .dropdown-menu {
@@ -297,6 +302,13 @@ time:not(.published){
     float:right;
 }
 
+.navbar-header .dropdown-menu {
+	left:initial;
+	right:5px;
+	width: 5em!important;
+	min-width:5em!important; 
+}
+
 /*
  * Widget area
  */
@@ -407,21 +419,24 @@ hr {
 }*/
 
 
+@media screen and (max-width: 500px) {
+	.padding-collapse-xs {
+	    padding: 0px;
+	}
+}	
+	
 @media screen and (min-width: 500px) {
 	div.stretchy-wrapper {
 	    padding-bottom: 52%;
 	}
 	
-}	
-
-@media screen and (max-width: 500px) {
-	.padding-collapse {
+	.padding-collapse-sm {
 	    padding: 0px;
 	}
-	
 }	
 
-@media screen and (min-width: 550px) {
+
+@media screen and (min-width: 544px) {
 	div.stretchy-wrapper {
 	    padding-bottom: 52%;
 	}

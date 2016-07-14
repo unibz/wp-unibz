@@ -48,11 +48,11 @@
 
 
 
-					<div class="col-xs-11 col-sm-2 col-sm-push-9">
+					<div class="navbar-header col-xs-11 col-sm-2 col-sm-push-9">
 
 						<?php global $polylang; if(isset($polylang)): ?>
 							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
-							<ul class="dropdown-menu">
+							<ul class="dropdown-menu unibrand">
 								<?php
 								/* language switcher */
 								pll_the_languages(array(
@@ -77,13 +77,13 @@
 
 
 					<!-- navigation menu -->
-					<div class="col-xs-12 col-sm-9 col-sm-pull-2">
+					<div class="col-xs-12 col-sm-9 col-sm-pull-2 padding-collapse-sm">
 						<?php
 							wp_nav_menu(
 								array(
 									'container_id' => 'primary-menu',
 									'container_class' => 'collapse navbar-collapse',
-									'menu_class' => 'nav navbar-nav',
+									'menu_class' => 'nav navbar-nav unibrand',
 									'menu_id' => '',
 									'walker' => new MyWalker(),
 								)

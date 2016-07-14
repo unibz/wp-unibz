@@ -15,7 +15,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area col-md-8 padding-collapse">
+	<div id="primary" class="content-area col-md-8 padding-collapse-xs">
 		<main id="main" class="site-main" role="main">
 
 		<?php
