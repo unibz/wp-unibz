@@ -17,7 +17,7 @@
 		</div>
 	</div><!-- .site-content -->
 
-	<div id="pittogramma" style="background-image:url('<?php echo get_template_directory_uri() . '/img/pittogramma.jpg'; ?>');"></div>
+	<div id="pittogramma" style="background-image:url('<?php echo get_option( 'my_theme_settings' )['pictogram']; ?>');"></div>
 
 	<footer id="colophon" class="site-footer unibrand" role="contentinfo">
 		<div class="site-info container">

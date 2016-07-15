@@ -12,14 +12,16 @@
  */
 function unibz_customize_register( $wp_customize ) {
 
+  // remove unused sections
   $wp_customize->remove_section('colors');
   $wp_customize->remove_section('background_image');
   $wp_customize->remove_control('site_icon');
 
+  // ??
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
-
+  // SECTION GOOGLE MAP
   $wp_customize->add_section(
     // ID
     'map_section',
@@ -31,6 +33,7 @@ function unibz_customize_register( $wp_customize ) {
     )
   );
 
+  // SETTING MAP URL
   $wp_customize->add_setting(
     'my_theme_settings[google_map]',
     array('type' => 'option')
@@ -46,6 +49,7 @@ function unibz_customize_register( $wp_customize ) {
     )
   );
 
+  // SETTING MAP TITLE
   $wp_customize->add_setting(
     'my_theme_settings[google_map_title]',
     array('type' => 'option')
@@ -61,6 +65,7 @@ function unibz_customize_register( $wp_customize ) {
     )
   );  
 
+  // SETTING MAP ADDRESS
   $wp_customize->add_setting(
     'my_theme_settings[google_map_address]',
     array('type' => 'option')
@@ -75,6 +80,49 @@ function unibz_customize_register( $wp_customize ) {
       'settings' => 'my_theme_settings[google_map_address]'
     )
   );  
+
+  // END GOOGLE MAP SECTION
+
+  // ---------------------------------------------------------------------------------
+
+  // SECTION PICTOGRAM
+  $wp_customize->add_section(
+    // ID
+    'pictogram_section',
+    // Arguments array
+    array(
+      'title' => __( 'Pictogram', 'my_theme' ),
+      'capability' => 'edit_theme_options',
+      'description' => __( 'Upload an image with height 150px that can be repeated horizontally', 'my_theme' )
+    )
+  );
+
+  // SETTING PICTOGRAM
+  $wp_customize->add_setting(
+    'my_theme_settings[pictogram]',
+    array(
+      'type' => 'option',
+      'default' => 'arse',
+      'capability' => 'edit_theme_options'
+    )
+  );
+
+  $wp_customize->add_control(
+    new WP_Customize_Upload_Control(
+      $wp_customize,
+      'pictogram_control',
+      array(
+        'label' => __( 'File', 'my_theme' ),
+        'section' => 'pictogram_section',
+        'settings' => 'my_theme_settings[pictogram]'
+      )
+    )
+  );
+
+  // END PICTOGRAM SECTION
+
+  // ---------------------------------------------------------------------------------
+
 }
 add_action( 'customize_register', 'unibz_customize_register' );
 
