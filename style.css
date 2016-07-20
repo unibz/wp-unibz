@@ -55,7 +55,7 @@ html, body {
 
 #masthead {
 	box-shadow:0 .08rem .9rem rgba(0,0,0,.2);
-	min-height:70px;
+	min-height:75px;
 }
 
 #masthead ul, #masthead ol {
@@ -83,14 +83,15 @@ html, body {
 
 #logo {
 	width:50px;
-	position:relative;
-	top:1px;
+	position:absolute;
+	top:16px;
 	z-index:1000;
 }
 
 #primary-menu {
     position: relative;
-    top: 22px
+    top: 22px;
+    z-index:1;
 }
 
 #primary-menu>li {
@@ -310,15 +311,17 @@ time:not(.published){
     border:0;
     text-transform: uppercase;
     margin-top:0.1em;
+    z-index: 100;
 }
 
-.navbar-header .dropdown-menu {
-	left:initial;
+#polylang-menu {
+	left:auto;
 	top:82%;
 	right:74px;
 	width: 3.8em!important;
 	min-width:3.8em!important; 
     text-transform: uppercase;
+    z-index:101;
 }
 
 /*
@@ -472,7 +475,7 @@ hr {
 	}
 
 	#primary-menu {
-		background:white;
+		background:transparent;
 		color:#202020;
 	    position:relative;
 	    top:-14px;
@@ -495,7 +498,7 @@ hr {
 		font-size:0.8em;
 	}
 
-	.navbar-header .dropdown-menu {
+	#polylang-menu {
 		top:100%;
 		right:15px;
 	}

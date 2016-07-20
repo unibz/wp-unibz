@@ -48,8 +48,8 @@
 
 
 
-					<div class="navbar-header col-xs-10 col-sm-2 col-sm-push-9">
-						<div class="">
+					<div class="navbar-header col-xs-10 col-md-2 col-md-push-9">
+						<div id="navbar-toggle-wrapper">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -58,21 +58,21 @@
 						</div>
 
 						<?php global $polylang; if(isset($polylang)): ?>
-							<div class="">
-								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
-								<ul class="dropdown-menu unibrand">
-									<?php
-									/* language switcher */
-									pll_the_languages(array(
-										'display_names_as' => 'slug',
-										'show_flags' => 0,
-										'hide_current' => 1,
-										'hide_if_empty' => 0,
-										'hide_if_no_translation' => 0,
-										));
-									?>
-								</ul>
-							</div>
+						<div id="polylang-menu-wrapper">
+							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="language-switch-button"><?php print_r(pll_current_language()); ?> <span class="caret"></span></button>
+							<ul id="polylang-menu" class="dropdown-menu unibrand">
+								<?php
+								/* language switcher */
+								pll_the_languages(array(
+									'display_names_as' => 'slug',
+									'show_flags' => 0,
+									'hide_current' => 1,
+									'hide_if_empty' => 0,
+									'hide_if_no_translation' => 0,
+									));
+								?>
+							</ul>
+						</div>
 						<?php endif; ?>
 					</div><!--  -->
 
@@ -80,7 +80,7 @@
 
 
 					<!-- navigation menu -->
-					<div class="col-xs-12 col-sm-9 col-sm-pull-2 padding-collapse-sm">
+					<div class="col-xs-12 col-md-9 col-md-pull-2 padding-collapse-sm">
 						<?php
 							wp_nav_menu(
 								array(
