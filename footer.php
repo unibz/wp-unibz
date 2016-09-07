@@ -42,7 +42,7 @@
 			?>
 			<div class="row" style="margin-top:50px;">
 				<div class="col-xs-12">
-					<a href="<?php bloginfo('template_directory');?>/disclaimer.html">About this website</a>
+					<a href="<?php bloginfo('template_directory');?>/disclaimer.html">About this site</a>
 				</div>
 			</div>
 		</div><!-- .site-info -->
