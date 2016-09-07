@@ -62,6 +62,10 @@ html, body {
 	border-left:0;
 }
 
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+	background-color:initial;
+}
+
 /*
  * Navigation
  */
@@ -250,6 +254,10 @@ article img {
 /*
  * Post's comments
  */
+
+ textarea {
+ 	max-width: 100%;
+ }
 
 .comment-list, .comment-list .children {
 	list-style: none;
