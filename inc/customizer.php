@@ -29,7 +29,7 @@ function unibz_customize_register( $wp_customize ) {
     array(
       'title' => __( 'Map', 'my_theme' ),
       'capability' => 'edit_theme_options',
-      'description' => __( 'Paste here the URL you got by Google Maps', 'my_theme' )
+      'description' => __( 'Paste here the Embed Map code you got by Google Maps (width and height will be adapted)', 'my_theme' )
     )
   );
 
@@ -43,7 +43,7 @@ function unibz_customize_register( $wp_customize ) {
     'map_control',
     array(
       'type' => 'text',
-      'label' => __( 'URL', 'my_theme' ),
+      'label' => __( 'Embed Map code (HTML)', 'my_theme' ),
       'section' => 'map_section',
       'settings' => 'my_theme_settings[google_map]'
     )

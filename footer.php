@@ -22,7 +22,11 @@
 	<footer id="colophon" class="site-footer unibrand" role="contentinfo">
 		<div class="site-info container">
 			<?php
-				if (!empty(get_option( 'my_theme_settings' )['google_map'])):
+				// extract the map URL out of the HTML code provided by Google Maps "embed map" feature
+				$mapHTML = get_option( 'my_theme_settings' )['google_map'];
+				preg_match('/src="[^"]+"/i', $mapHTML, $mapURL);
+
+				if (!empty($mapURL)):
 			?>
 			<div class="row">
 					<div class="col-md-5">
@@ -30,7 +34,7 @@
 						<address><?php echo get_option( 'my_theme_settings' )['google_map_address'];?></address>
 					</div>
 					<div class="col-md-7">
-						<iframe src="<?php echo get_option( 'my_theme_settings' )['google_map'];?>" id="footer-map"></iframe>
+						<iframe id="footer-map" <?php echo $mapURL[0]; ?>></iframe>
 					</div>
 			</div>
 			<?php
