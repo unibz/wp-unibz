@@ -21,6 +21,9 @@
 
 	<footer id="colophon" class="site-footer unibrand" role="contentinfo">
 		<div class="site-info container">
+			<?php
+				if (!empty(get_option( 'my_theme_settings' )['google_map'])):
+			?>
 			<div class="row">
 					<div class="col-md-5">
 						<strong><?php echo get_option( 'my_theme_settings' )['google_map_title'];?></strong>
@@ -30,6 +33,9 @@
 						<iframe src="<?php echo get_option( 'my_theme_settings' )['google_map'];?>" id="footer-map"></iframe>
 					</div>
 			</div>
+			<?php
+				endif;
+			?>
 			<div class="row" style="margin-top:50px;">
 				<div class="col-xs-12">
 					&copy; 2016 Free University of Bozen-Bolzano 
