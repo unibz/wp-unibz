@@ -25,7 +25,6 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area col-xs-12">
 
-	<div class="comment-area">
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
@@ -38,7 +37,6 @@ if ( post_password_required() ) {
 				);
 			?>
 		</h2>
-	</div>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
@@ -68,7 +66,7 @@ if ( post_password_required() ) {
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
+		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
 			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'unibz' ); ?></h2>
 			<ul class="nav-links pager">
 
@@ -76,8 +74,9 @@ if ( post_password_required() ) {
 				<li class="nav-next next"><?php next_comments_link( esc_html__( 'Newer Comments', 'unibz' ) ); ?></li>
 
 			</ul><!-- .nav-links -->
-		</nav><!-- #comment-nav-above -->
-		<?php endif; // Check for comment navigation.
+		</nav><!-- #comment-nav-below -->
+		<?php 
+		endif; // Check for comment navigation.
 
 	endif; // Check for have_comments().
 
@@ -91,5 +90,4 @@ if ( post_password_required() ) {
 
 	comment_form();
 	?>
-
 </div><!-- #comments -->
