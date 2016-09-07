@@ -42,7 +42,7 @@
 			?>
 			<div class="row" style="margin-top:50px;">
 				<div class="col-xs-12">
-					&copy; 2016 Free University of Bozen-Bolzano 
+					<a href="<?php bloginfo('template_directory');?>/disclaimer.html">About this website</a>
 				</div>
 			</div>
 		</div><!-- .site-info -->
