@@ -82,6 +82,7 @@ html, body {
 
 .navbar-toggle {
 	margin-top:0!important;
+	margin-right:-20px!important;
 	padding: 7px!important 10px!important;
 }
 
