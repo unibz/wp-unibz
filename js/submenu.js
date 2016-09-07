@@ -9,5 +9,8 @@
 
 $('.dropdown-submenu').click(function(event) {
   $(this).toggleClass('open');
+  $(this).siblings('li').removeClass('open');
+  $(this).siblings('li').find('.dropdown-submenu').removeClass('open');
+  $(this).find('.dropdown-submenu').removeClass('open');
   event.stopPropagation();
 });
