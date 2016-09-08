@@ -260,6 +260,10 @@ article img {
  	max-width: 100%;
  }
 
+.comments-area {
+	float:none;
+}
+
 .comment-list, .comment-list .children {
 	list-style: none;
 	border-left:5px solid #dedede;
@@ -296,6 +300,10 @@ article img {
 }
 .nav-previous, .nav-next {
 	display:table-cell;
+}
+
+.required {
+	color:#f25858;
 }
 
 
@@ -430,10 +438,14 @@ address {
     margin: 20px;
 }
 
-
 hr {
 	border-top: 1px solid #dbdbdb;
 }
+
+#primary {
+	padding-bottom:2em;
+}
+
 
 /* Media Queries */
 
