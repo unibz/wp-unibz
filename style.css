@@ -359,6 +359,7 @@ time:not(.published){
 }
 
 .widget-area {
+	position:static;
 	padding-top: 20px;
 }
 
