@@ -349,9 +349,8 @@ time:not(.published){
 }
 
 .widget-area li:before {
-	content:"» ";
-	text-transform: uppercase;
-	font-size:1.5em;
+	content:"· ";
+	font-size:1.2em;
 }
 
 .widget-area section {
