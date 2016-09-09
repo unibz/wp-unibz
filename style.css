@@ -82,7 +82,6 @@ html, body {
 
 .navbar-toggle {
 	margin-top:0!important;
-	margin-right:-20px!important;
 	padding: 7px!important 10px!important;
 }
 
@@ -90,7 +89,7 @@ html, body {
 	width:50px;
 	position:absolute;
 	top:16px;
-	z-index:1000;
+	z-index:100;
 }
 
 #primary-menu {
@@ -174,9 +173,10 @@ article img {
 	background-size:cover;
 	background-position:center;
 	color:white;
+	text-shadow: -1px 0 #787878, 0 1px #787878, 1px 0 #787878, 0 -1px #787878;
 	text-align:center;
 	margin-bottom: 10px;
-	/*padding:5em;*/
+	overflow:hidden;
 }
 
 .hero h1 {
@@ -201,7 +201,6 @@ article img {
     width: 100%;
     padding: 0 1em;
     color: white;
-    font-size: 24px;
     text-align: center;
 }
 
@@ -328,7 +327,7 @@ time:not(.published){
     border:0;
     text-transform: uppercase;
     margin-top:0.1em;
-    z-index: 100;
+    z-index: 101;
 }
 
 #polylang-menu {
@@ -338,7 +337,7 @@ time:not(.published){
 	width: 3.8em!important;
 	min-width:3.8em!important; 
     text-transform: uppercase;
-    z-index:101;
+    z-index:102;
 }
 
 /*
@@ -358,6 +357,10 @@ time:not(.published){
 
 .widget-area section {
 	padding: 2em 0 2em 0;
+	border-top: 1px solid #dbdbdb;
+}
+
+.widget-area section:first-child {
 	border-top: 1px solid #dbdbdb;
 }
 
@@ -521,13 +524,6 @@ hr {
 @media screen and (min-width: 1024px) {
 	div.stretchy-wrapper {
 	    padding-bottom: 40%;
-	}
-}
-
-@media screen and (min-width: 1083px) {
-	.widget-area section:first-child {
-		border-top: 0;
-		padding-top:0;
 	}
 }
 
