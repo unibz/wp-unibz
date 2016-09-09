@@ -53,6 +53,17 @@ html, body {
 	font-size: 15px;
 }
 
+a, a:visited {
+	color: black;
+	text-decoration: underline;
+	font-weight: bold;
+	transition: color .2s cubic-bezier(.55,0,.1,1);
+}
+
+a:hover, a:active {
+	color:#007be4;;
+}
+
 #masthead {
 	box-shadow:0 .08rem .9rem rgba(0,0,0,.2);
 	min-height:75px;
@@ -61,6 +72,8 @@ html, body {
 #masthead ul, #masthead ol {
 	border-left:0;
 }
+
+.navbar
 
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
 	background-color:initial;
@@ -215,6 +228,7 @@ article img {
 
 .unibrand a{
 	color:white !important;
+	text-decoration: none;
 }
 
 .btn.unibrand{
@@ -247,7 +261,9 @@ article img {
 }
 
 .entry-date {
+	font-weight: bold;
 	text-transform: uppercase;
+	color: #007be4;
 }
 
 /*
