@@ -135,14 +135,6 @@ html, body {
 	margin-top:2em;
 }
 
-.entry-meta {
-	margin: 1.1em 0;
-}
-
-.entry-meta-nopicture {
-	margin-bottom:-0.8em;
-}
-
 /*
  * Text images
  */
@@ -157,7 +149,6 @@ article img {
 }
 
 .post-thumbnail img {
-	max-width: 250px;
 	height: auto;
 	display: block;
     margin-bottom: 0.5em;
@@ -244,11 +235,19 @@ article img {
  */
 
 .post {
-	padding:0px;
+	margin-bottom:3em;
 }
 
 .cat-links {
     display: block;
+}
+
+.entry-title{
+	margin-top:0.3em;
+}
+
+.entry-date {
+	text-transform: uppercase;
 }
 
 /*
