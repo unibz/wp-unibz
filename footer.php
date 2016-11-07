@@ -42,6 +42,7 @@
 					?>
 					<div class="row" style="margin-top:50px;">
 						<div class="col-xs-12">
+							<a href="<?php bloginfo('template_directory');?>/privact.pdf">Privacy and Cookie Policy</a>
 							<a href="<?php bloginfo('template_directory');?>/legal.html">Legal</a>
 						</div>
 					</div>

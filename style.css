@@ -153,7 +153,11 @@ a:hover, a:active {
  */
 
 figure {
-	max-width:100%;
+    max-width:100%;
+}
+
+iframe {
+    max-width:100%;
 }
 
 article img {
@@ -423,6 +427,13 @@ textarea {
 
 address {
 		white-space: pre;
+}
+
+#colophon a {
+    border-bottom: 1px solid white;
+    padding: 0.1em 0;
+    margin-right: 1em;
+    display: inline-block;
 }
 
 /*
