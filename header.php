@@ -107,9 +107,10 @@
 
 			<?php
 				// display the hero if and only if it has to be shown
+				$hero_display = get_post_meta( get_the_ID(), 'hero-meta-box-display' );
 				if (
 					// if the page is single page or single post, and has a featured image, and the hero is set to be shown
-					((is_single() || is_page()) && has_post_thumbnail() && get_post_meta( get_the_ID(), 'hero-meta-box-display' )[0])
+					((is_single() || is_page()) && has_post_thumbnail() && $hero_display[0])
 					|| // or
 					// if the page is a blog/archive/search page and the blog has a header image
 				    (!is_single() && !is_page() && has_header_image())
@@ -117,8 +118,10 @@
 
 				// get the right values for hero-title and hero-description
 				if (is_single() || is_page()) {
-					$HeroTitle = get_post_meta( get_the_ID(), 'hero-meta-box-title' )[0];
-					$HeroSubtitle = get_post_meta( get_the_ID(), 'hero-meta-box-subtitle' )[0];
+					$HeroTitle = get_post_meta( get_the_ID(), 'hero-meta-box-title' );
+					$HeroSubtitle = get_post_meta( get_the_ID(), 'hero-meta-box-subtitle' );
+					$HeroTitle = $HeroTitle[0];
+					$HeroSubtitle = $HeroSubtitle[0];
 				}
 				else {
 					$HeroTitle = get_bloginfo( 'name', 'display');
