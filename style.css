@@ -156,6 +156,12 @@ figure {
     max-width:100%;
 }
 
+figure figcaption {
+    font-size: 0.85em;
+    text-align: center;
+    color: #999;
+}
+
 iframe {
     max-width:100%;
 }
