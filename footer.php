@@ -17,21 +17,25 @@
 				</div>
 			</div><!-- .site-content -->
 
-			<div id="pittogramma" style="background-image:url('<?php echo get_option( 'my_theme_settings' )['pictogram']; ?>');"></div>
+			<?php
+				$my_theme_settings = get_option( 'my_theme_settings' );
+			?>
+
+			<div id="pittogramma" style="background-image:url('<?php echo $my_theme_settings['pictogram']; ?>');"></div>
 
 			<footer id="colophon" class="site-footer unibrand" role="contentinfo">
 				<div class="site-info container">
 					<?php
 						// extract the map URL out of the HTML code provided by Google Maps "embed map" feature
-						$mapHTML = get_option( 'my_theme_settings' )['google_map'];
+						$mapHTML = $my_theme_settings['google_map'];
 						preg_match('/src="[^"]+"/i', $mapHTML, $mapURL);
 
 						if (!empty($mapURL)):
 					?>
 					<div class="row">
 							<div class="col-md-5">
-								<strong><?php echo get_option( 'my_theme_settings' )['google_map_title'];?></strong>
-								<address><?php echo get_option( 'my_theme_settings' )['google_map_address'];?></address>
+								<strong><?php echo $my_theme_settings['google_map_title'];?></strong>
+								<address><?php echo $my_theme_settings['google_map_address'];?></address>
 							</div>
 							<div class="col-md-7">
 								<iframe id="footer-map" <?php echo $mapURL[0]; ?>></iframe>
