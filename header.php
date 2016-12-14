@@ -48,7 +48,7 @@
 
 
 
-					<div class="navbar-header col-xs-10 col-sm-2 col-sm-push-9">
+					<div class="navbar-header col-xs-10 col-sm-1 col-sm-push-10">
 						<div id="navbar-toggle-wrapper">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
 								<span class="icon-bar"></span>
@@ -80,7 +80,7 @@
 
 
 					<!-- navigation menu -->
-					<div class="col-xs-12 col-sm-9 col-sm-pull-2 padding-collapse-sm">
+					<div class="col-xs-12 col-sm-10 col-sm-pull-1 padding-collapse-sm">
 						<?php
 							wp_nav_menu(
 								array(
