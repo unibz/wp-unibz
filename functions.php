@@ -103,12 +103,17 @@ add_action( 'widgets_init', 'unibz_widgets_init' );
  */
 function unibz_scripts() {
 	// CSS
-	wp_enqueue_style( 'bootstrap-css', 			get_template_directory_uri() . '/css/bootstrap.min.css');
-	wp_enqueue_style( 'unibz-style', 			get_stylesheet_uri());
+	wp_enqueue_style( 'bootstrap-css', 	get_template_directory_uri() . '/css/bootstrap.min.css');
+	wp_enqueue_style( 'unibz-style', 	get_stylesheet_uri());
+
+	$my_theme_settings = get_option('my_theme_settings');
+	if ($my_theme_settings['faculty_color'] != 'none'){
+		wp_enqueue_style( 'faculty', 	get_template_directory_uri() . '/css/faculty-'.$my_theme_settings['faculty_color'].'.css');
+	}
 	//JS
-	wp_enqueue_script( 'jquery-js', 			get_template_directory_uri() . '/js/jquery.js', 			array(), null, true );
-	wp_enqueue_script( 'bootstrap-js', 			get_template_directory_uri() . '/js/bootstrap.js', 			array(), null, true );
-	wp_enqueue_script( 'submenu-js', 			get_template_directory_uri() . '/js/submenu.js', 			array(), null, true );
+	wp_enqueue_script( 'jquery-js', 	get_template_directory_uri() . '/js/jquery.js', 	array(), null, true );
+	wp_enqueue_script( 'bootstrap-js', 	get_template_directory_uri() . '/js/bootstrap.js', 	array(), null, true );
+	wp_enqueue_script( 'submenu-js', 	get_template_directory_uri() . '/js/submenu.js', 	array(), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'unibz_scripts' );
 

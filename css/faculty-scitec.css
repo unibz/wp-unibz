@@ -1,0 +1,29 @@
+a:hover, a:active {
+	color:#1a8c64;
+}
+#primary-menu>li {
+	background:#1a8c64;
+	color:white;
+}
+.unibrand{
+	background:#1a8c64;
+	color:white;
+}
+
+.btn.unibrand{
+	background:#1a8c64 !important;
+	color:white;
+	border: 0;
+	margin-right: 7px;
+}
+
+.unibrand a:hover, .unibrand a:focus{
+	background:#1a8c64 !important;
+	color:white;
+}
+
+.entry-date {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #1a8c64;
+}

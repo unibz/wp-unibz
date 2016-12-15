@@ -123,6 +123,49 @@ function unibz_customize_register( $wp_customize ) {
 
   // ---------------------------------------------------------------------------------
 
+  // SECTION FACULTY COLOR
+  $wp_customize->add_section(
+    // ID
+    'faculty_color_section',
+    // Arguments array
+    array(
+      'title' => __( 'Faculty Style', 'my_theme' ),
+      'capability' => 'edit_theme_options',
+      'description' => __( 'Select the faculty style for the website', 'my_theme' )
+    )
+  );
+
+  // SETTING FACULTY COLOR
+  $wp_customize->add_setting(
+    'my_theme_settings[faculty_color]',
+    array(
+      'type' => 'option',
+      'default' => 'none',
+      'capability' => 'edit_theme_options'
+    )
+  );
+
+  $wp_customize->add_control( 
+    'faculty_color_control',
+    array(
+      'settings' => 'my_theme_settings[faculty_color]',
+      'label'   => 'Choose',
+      'section' => 'faculty_color_section',
+      'type'    => 'select',
+      'choices' => array(
+        'none' => 'Default',
+        'comp' => 'Computer Science',
+        'dsgn' => 'Design and Art',
+        'econ' => 'Economics and Management',
+        'scitec' => 'Science and Technology',
+        'edu' => 'Education'
+      )
+    )
+  );
+
+  // END PICTOGRAM SECTION
+
+  // ---------------------------------------------------------------------------------
 }
 add_action( 'customize_register', 'unibz_customize_register' );
 
