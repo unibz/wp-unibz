@@ -27,3 +27,13 @@ a:hover, a:active {
 	text-transform: uppercase;
 	color: #1a8c64;
 }
+
+#today {
+	background-color:#1a8c64;
+	border-radius: 21px;
+}
+
+#wp-calendar a {
+	text-decoration: none;
+	color: #1a8c64;
+}

@@ -250,7 +250,6 @@ class MyWalker extends Walker_Nav_Menu {
 		}
 
 		$output .= '<li class="' . implode($item->classes, ' ') . '">'.$link;
-//echo "<pre>";var_dump($item);
 	}
 
 	function end_el( &$output, $item, $depth = 0, $args = array() ) {
@@ -258,7 +257,8 @@ class MyWalker extends Walker_Nav_Menu {
 	}
 }
 
-
-
-
-
+// style search form
+function unibz_search_form_modify( $html ) {
+	return str_replace( 'class="search-submit"', 'class="search-submit btn btn-default unibrand"', $html );
+}
+add_filter( 'get_search_form', 'unibz_search_form_modify' );

@@ -398,7 +398,7 @@ time:not(.published){
 }
 
 .widget-area section:first-child {
-	border-top: 1px solid #dbdbdb;
+	border-top: 0;
 }
 
 .widget-area table {
@@ -420,9 +420,23 @@ time:not(.published){
 	margin-top: 0px;
 }
 
+#wp-calendar {
+	line-height: 0.9em;
+}
+
+#wp-calendar a {
+	color: #007be4;
+	text-decoration: underline!important;
+}
 
 #today {
-	background-color:#dedede;
+	background-color:#007be4;
+	border-radius: 21px;
+	color:white;
+}
+
+#today a {
+	color:white;
 }
 
 /*
