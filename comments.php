@@ -60,6 +60,7 @@ if ( post_password_required() ) {
 
 				// add bootstrap classes
 				$commentsHTML = preg_replace( '/comment-reply-link/', 'comment-reply-link btn btn-button unibrand', $commentsHTML);
+				$commentsHTML = preg_replace( '/comment-edit-link/', 'comment-edit-link btn btn-button btn-sm btn-default', $commentsHTML);
 
 				echo $commentsHTML;
 			?>
@@ -88,6 +89,11 @@ if ( post_password_required() ) {
 	<?php
 	endif;
 
-	comment_form();
+	comment_form(
+		array(
+			'class_submit' => 'btn btn-button unibrand',
+			'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" aria-required="true" class="form-control"></textarea></p>',
+		)
+	);
 	?>
 </div><!-- #comments -->

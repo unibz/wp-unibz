@@ -236,7 +236,7 @@ article img {
 	color:white;
 }
 
-.unibrand a{
+.unibrand a, a.unibrand{
 	color:white !important;
 	text-decoration: none;
 }
@@ -281,8 +281,11 @@ article img {
  */
 
  textarea {
+ 	min-width: 100%;
  	max-width: 100%;
- }
+ 	min-height: 10em;
+	display:block;
+}
 
 .comments-area {
 	float:none;
@@ -311,6 +314,16 @@ article img {
 
 .comment-metadata {
 	text-align: right;
+}
+
+
+.comment-edit-link {
+	text-decoration: none;
+	color:#666666;
+}
+
+.comment-edit-link:hover {
+	color:#333333;
 }
 
 .comments-link {
@@ -407,9 +420,6 @@ time:not(.published){
 	margin-top: 0px;
 }
 
-textarea {
-	display:block;
-}
 
 #today {
 	background-color:#dedede;
