@@ -259,6 +259,8 @@ class MyWalker extends Walker_Nav_Menu {
 
 // style search form
 function unibz_search_form_modify( $html ) {
-	return str_replace( 'class="search-submit"', 'class="search-submit btn btn-default unibrand"', $html );
+	$html = str_replace( 'class="search-submit"', 'class="search-submit btn btn-default unibrand" style="position:absolute; margin-left:0.2em;"', $html );
+	$html = str_replace( 'class="search-field"', 'class="search-field form-control"', $html );
+	return $html;
 }
 add_filter( 'get_search_form', 'unibz_search_form_modify' );
