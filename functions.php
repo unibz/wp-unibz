@@ -144,6 +144,11 @@ require get_template_directory() . '/inc/jetpack.php';
 
 // ----------------------------------------------------------------------------------------------
 
+/**
+ * Load unibz news widget.
+ */
+require get_template_directory() . '/inc/unibz-news-widget.php';
+
 // Set excerpt length
 function my_excerpt_length($length) {
 	if(!has_post_thumbnail()) {
