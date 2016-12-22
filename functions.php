@@ -149,6 +149,19 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/unibz-news-widget.php';
 
+/**
+ * Redefine default WordPress RSS widget.
+ */
+require get_template_directory() . '/inc/custom-rss-widget.php';
+
+// replace WordPress default RSS widget with custom
+function unregister_default_widgets() {
+	unregister_widget('WP_Widget_RSS');
+	register_widget( 'unibz_Widget_RSS' );
+} add_action('widgets_init', 'unregister_default_widgets', 11);
+
+
+
 // Set excerpt length
 function my_excerpt_length($length) {
 	if(!has_post_thumbnail()) {

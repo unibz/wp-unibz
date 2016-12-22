@@ -7,11 +7,11 @@ class unibz_news_widget extends WP_Widget {
 	private static $topicList;
 
 
-	private function loadNews($topics) {
+	private function loadNews($topics, $limit = 5) {
 		
 		// GET api response
 		try {
-        	$newsResponse = json_decode(file_get_contents($this->APIURLNews."?topics={$topics}", true));
+        	$newsResponse = json_decode(file_get_contents($this->APIURLNews."?cache=false&topics={$topics}&limit={$limit}", true));
         	$news = array();
     	}
     	catch(Exception $e) {
@@ -23,6 +23,7 @@ class unibz_news_widget extends WP_Widget {
 			foreach($newsResponse->EntriesList as $entry) {
 				$item = new stdClass();
 				$item->Id = $entry->Id;
+				$item->Date = strtotime($entry->ValidFrom);
 				if ($entry->Sections) {
 					foreach($entry->Sections as $section) {
 						if($section->Name == 'TITLE') {
@@ -43,7 +44,7 @@ class unibz_news_widget extends WP_Widget {
 	private function loadTopics() {
 		// GET api response
 		try {
-        	$topicsResponse = json_decode(file_get_contents($this->APIURLTopics, true));
+        	$topicsResponse = json_decode(file_get_contents($this->APIURLTopics.'?cache=false&topictype=news&lists=unibznews', true));
         	$topics = array();
     	}
     	catch(Exception $e) {
@@ -83,25 +84,35 @@ class unibz_news_widget extends WP_Widget {
 	// Creating widget front-end
 	// This is where the action happens
 	public function widget( $args, $instance ) {
-		//$title = apply_filters( 'widget_title', $instance['title'] );
-		//$topics = apply_filters( 'widget_title', $instance['topics'] );
 		$title = $instance['title'];
 		$topics = $instance['topics'];
+		$limit = $instance['limit'] ? $instance['limit'] : 5;
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
 
 		// This is where you run the code and display the output
-        $news = $this->loadNews($topics);
+        $news = $this->loadNews($topics, $limit);
 		?>
 
 			<div id="unibz-news-feed-box">
 				<?php 
 					if($news) {
+						$date = null;
 						echo "<ul>";
 						foreach($news as $entry) {
-							echo "<li><a href='https://www.unibz.it/en/news/{$entry->Id}' target='_blank'>{$entry->Title}</a></li>";
+							
+							if($date != $entry->Date) {
+								$date = $entry->Date;
+								$timestamp = date('c', $date);
+								$pretty_date = date('d M Y', $date);
+								echo "<li class='date-item'><time class='entry-date published' datetime='{$timestamp}'>{$pretty_date}</time></li>";
+							}
+
+							echo "<li>";
+							echo "<a href='https://www.unibz.it/en/news/{$entry->Id}' target='_blank'>{$entry->Title}</a>";
+							echo "</li>";
 						}
 						echo "</ul>";
 					}
@@ -134,6 +145,13 @@ class unibz_news_widget extends WP_Widget {
 			$topics = __( 'New topics', 'unibz_news_widget_domain' );
 		}
 
+		if ( isset( $instance[ 'limit' ] ) ) {
+			$limit = $instance[ 'limit' ];
+		}
+		else {
+			$limit = __( '5', 'unibz_news_widget_domain' );
+		}
+
 		// Widget admin form
         $topicList = $this->loadTopics();
         if($topicList):
@@ -155,7 +173,11 @@ class unibz_news_widget extends WP_Widget {
 							echo "<option value='{$topic->Id}' {$selected}>{$topic->Name}</option>";
 						}
 					?>
-				</select>
+				</select><br>
+				<br>
+				<input style="width:80px" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="number" value="<?php echo esc_attr( $limit ); ?>" min="1" max="25" />
+				<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Max entries' ); ?></label> 
+				<br>
 			</p>
 		<?php
 		else:
@@ -173,6 +195,7 @@ class unibz_news_widget extends WP_Widget {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['topics'] = ( ! empty( $new_instance['topics'] ) ) ? strip_tags( $new_instance['topics'] ) : '';
+		$instance['limit'] = ( ! empty( $new_instance['limit'] ) ) ? strip_tags( $new_instance['limit'] ) : '5';
 		return $instance;
 	}
 } // Class unibz_news_widget ends here
