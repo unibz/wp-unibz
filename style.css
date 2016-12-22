@@ -381,33 +381,37 @@ time:not(.published){
  * Widget area
  */
 
-.widget-area ul {
-	list-style: none;
-	padding-left:1em;
+.widget-area {
+	position:static;
+	padding-top: 20px;
 }
 
-.widget-area li:before {
-	content:"· ";
-	font-size:1.2em;
+.widget-area ul {
+    list-style: none;
+    padding-left:0;
+    font-size: 0.9em;
+}
+
+.widget-area ul li {
+    margin-bottom:0.5em;
+}
+
+.widget-area ul li a {
+    font-weight: lighter;
 }
 
 .widget-area section {
-	padding: 2em 0 2em 0;
-	border-top: 1px solid #dbdbdb;
+    padding: 2em 0 2em 0;
+    border-top: 1px solid #dbdbdb;
 }
 
 .widget-area section:first-child {
-	border-top: 0;
+    border-top: 0;
 }
 
 .widget-area table {
     border-collapse: collapse;
     text-align: center;
-}
-
-.widget-area {
-	position:static;
-	padding-top: 20px;
 }
 
 .widget-area table, .widget-area th, .widget-area td {
