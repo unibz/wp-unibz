@@ -29,6 +29,9 @@ class unibz_news_widget extends WP_Widget {
 						if($section->Name == 'TITLE') {
 							$item->Title = $section->Content;
 						}
+						if($section->Name == 'TEASER') {
+							$item->Teaser = $section->Content;
+						}
 					}
 				}
 				if ($item->Id && $item->Title) {
@@ -86,6 +89,8 @@ class unibz_news_widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		$title = $instance['title'];
 		$topics = $instance['topics'];
+		$show_teaser = $instance['show_teaser'];
+		$show_date = $instance['show_date'];
 		$limit = $instance['limit'] ? $instance['limit'] : 5;
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
@@ -103,7 +108,7 @@ class unibz_news_widget extends WP_Widget {
 						echo "<ul>";
 						foreach($news as $entry) {
 							
-							if($date != $entry->Date) {
+							if($show_date && $date != $entry->Date) {
 								$date = $entry->Date;
 								$timestamp = date('c', $date);
 								$pretty_date = date('d M Y', $date);
@@ -112,6 +117,9 @@ class unibz_news_widget extends WP_Widget {
 
 							echo "<li>";
 							echo "<a href='https://www.unibz.it/en/news/{$entry->Id}' target='_blank'>{$entry->Title}</a>";
+							if($show_teaser === 'on') {
+								echo "<br><p>{$entry->Teaser}</p>";
+							}
 							echo "</li>";
 						}
 						echo "</ul>";
@@ -152,6 +160,20 @@ class unibz_news_widget extends WP_Widget {
 			$limit = __( '5', 'unibz_news_widget_domain' );
 		}
 
+		if ( isset( $instance[ 'show_teaser' ] ) ) {
+			$show_teaser = $instance[ 'show_teaser' ];
+		}
+		else {
+			$show_teaser = __( 'off', 'unibz_news_widget_domain' );
+		}
+
+		if ( isset( $instance[ 'show_date' ] ) ) {
+			$show_date = $instance[ 'show_date' ];
+		}
+		else {
+			$show_date = __( 'off', 'unibz_news_widget_domain' );
+		}
+
 		// Widget admin form
         $topicList = $this->loadTopics();
         if($topicList):
@@ -160,8 +182,8 @@ class unibz_news_widget extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /><br>
 				<br>
-				<label for="<?php echo $this->get_field_id( 'topics' ); ?>"><?php _e( 'Topics:' ); ?></label> 
-				<select name="<?php echo $this->get_field_name( 'topics' ); ?>" id="<?php echo $this->get_field_id( 'topics' ); ?>">
+				<label for="<?php echo $this->get_field_id( 'topics' ); ?>"><?php _e( 'Feed:' ); ?></label> 
+				<select class="widefat" name="<?php echo $this->get_field_name( 'topics' ); ?>" id="<?php echo $this->get_field_id( 'topics' ); ?>">
 					<?php
 						foreach($topicList as $topic) {
 							if (esc_attr($topics) == $topic->Id) {
@@ -175,9 +197,15 @@ class unibz_news_widget extends WP_Widget {
 					?>
 				</select><br>
 				<br>
-				<input style="width:80px" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="number" value="<?php echo esc_attr( $limit ); ?>" min="1" max="25" />
-				<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Max entries' ); ?></label> 
+				<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'How many items would you like to display?' ); ?></label> 
+				<input style="width:80px" id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="number" value="<?php echo esc_attr( $limit ); ?>" min="1" max="25" /><br>
 				<br>
+				<input id="<?php echo $this->get_field_id( 'show_teaser' ); ?>" name="<?php echo $this->get_field_name( 'show_teaser' ); ?>" type="checkbox" <?php if($show_teaser==='on') echo "checked"; ?> />
+				<label for="<?php echo $this->get_field_id( 'show_teaser' ); ?>"><?php _e( 'Display item content?' ); ?></label><br>
+				<br>
+				<input id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" type="checkbox" <?php if($show_date==='on') echo "checked"; ?> />
+				<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display item date?' ); ?></label>
+
 			</p>
 		<?php
 		else:
@@ -196,6 +224,8 @@ class unibz_news_widget extends WP_Widget {
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['topics'] = ( ! empty( $new_instance['topics'] ) ) ? strip_tags( $new_instance['topics'] ) : '';
 		$instance['limit'] = ( ! empty( $new_instance['limit'] ) ) ? strip_tags( $new_instance['limit'] ) : '5';
+		$instance['show_teaser'] = ( ! empty( $new_instance['show_teaser'] ) ) ? strip_tags( $new_instance['show_teaser'] ) : 'off';
+		$instance['show_date'] = ( ! empty( $new_instance['show_date'] ) ) ? strip_tags( $new_instance['show_date'] ) : 'off';
 		return $instance;
 	}
 } // Class unibz_news_widget ends here
