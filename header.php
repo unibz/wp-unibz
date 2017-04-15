@@ -82,15 +82,17 @@
 					<!-- navigation menu -->
 					<div class="col-xs-12 col-sm-10 col-sm-pull-1 padding-collapse-sm">
 						<?php
-							wp_nav_menu(
-								array(
-									'container_id' => 'primary-menu',
-									'container_class' => 'collapse navbar-collapse unibrand',
-									'menu_class' => 'nav navbar-nav',
-									'menu_id' => '',
-									'walker' => new MyWalker(),
-								)
-							);
+							if (has_nav_menu('primary')) {
+								wp_nav_menu(
+									array(
+										'container_id' => 'primary-menu',
+										'container_class' => 'collapse navbar-collapse unibrand',
+										'menu_class' => 'nav navbar-nav',
+										'menu_id' => '',
+										'walker' => new MyWalker(),
+									)
+								);
+							}
 						?>
 					</div>
 					<!-- navigation menu -->
