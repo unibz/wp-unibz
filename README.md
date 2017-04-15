@@ -1,12 +1,8 @@
-# unibz_s #
+# unibz #
 
-This is a light-weight Wordpress theme that was made to respect the layout of 
-unibz.it webpages.
+Official unibz branded Wordpress theme.
 
- * If you are an editor and have to publish contents using this theme, then follow 
-   [this guide](doc/editors.md).
- * If you are interested in more technical stuff like deploying it or developing,
-   then follow [this other guide](doc/developers.md).
+Documentation about the theme can be found [here](https://wordpress-theme-doc.unibz.it).
 
 ---
 
