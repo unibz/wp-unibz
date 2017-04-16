@@ -195,8 +195,8 @@ function unibz_hero_meta_box_display_callback( $object ) {
             <label for="hero-meta-box-title">Title</label><br>
             <input name="hero-meta-box-subtitle" type="text" value="<?php echo get_post_meta($object->ID, "hero-meta-box-subtitle", true); ?>">
             <label for="hero-meta-box-subtitle">Subtitle</label><br>
-            <input name="hero-meta-box-display" type="checkbox" value="1" <?php echo (get_post_meta($object->ID, "hero-meta-box-display", true) ? 'checked' : ''); ?>>
-            <label for="hero-meta-box-display">Display Hero?</label><br>
+            <input name="hero-meta-box-hide" type="checkbox" value="1" <?php echo (get_post_meta($object->ID, "hero-meta-box-hide", true) ? 'checked' : ''); ?>>
+            <label for="hero-meta-box-hide">Hide Hero Image?</label><br>
         </div>
     <?php  
 }

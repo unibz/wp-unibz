@@ -163,7 +163,7 @@ function unibz_customize_register( $wp_customize ) {
     )
   );
 
-  // END PICTOGRAM SECTION
+  // END FACULTY COLOR SECTION
 
   // ---------------------------------------------------------------------------------
 }

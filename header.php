@@ -49,6 +49,7 @@
 
 
 					<div class="navbar-header col-xs-10 col-sm-1 col-sm-push-10">
+						<?php if (has_nav_menu('primary')) : ?>
 						<div id="navbar-toggle-wrapper">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
 								<span class="icon-bar"></span>
@@ -56,6 +57,7 @@
 								<span class="icon-bar"></span>                        
 							</button>
 						</div>
+					<?php endif; ?>
 
 						<?php global $polylang; if(isset($polylang)): ?>
 						<div id="polylang-menu-wrapper">
@@ -109,10 +111,10 @@
 
 			<?php
 				// display the hero if and only if it has to be shown
-				$hero_display = get_post_meta( get_the_ID(), 'hero-meta-box-display' );
+				$hero_hide = get_post_meta( get_the_ID(), 'hero-meta-box-hide' );
 				if (
-					// if the page is single page or single post, and has a featured image, and the hero is set to be shown
-					((is_single() || is_page()) && has_post_thumbnail() && $hero_display[0])
+					// if the page is single page or single post, and the hero is set to be shown
+					((is_single() || is_page()) && (has_post_thumbnail() || has_header_image()) && !$hero_hide[0])
 					|| // or
 					// if the page is a blog/archive/search page and the blog has a header image
 				    (!is_single() && !is_page() && has_header_image())
@@ -132,7 +134,7 @@
 			?>
 
 			<div class="hero" style="background-image:url('<?php 
-				if(has_post_thumbnail() && (is_single() || is_page())) {
+				if(has_post_thumbnail()) {
 					the_post_thumbnail_url();
 				}
 				else {
