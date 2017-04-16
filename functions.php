@@ -275,6 +275,7 @@ class MyWalker extends Walker_Nav_Menu {
 	}
 }
 
+
 // style search form
 function unibz_search_form_modify( $html ) {
 	$html = str_replace( 'class="search-submit"', 'class="search-submit btn btn-default unibrand" style="position:absolute; margin-left:0.2em;"', $html );
@@ -282,3 +283,80 @@ function unibz_search_form_modify( $html ) {
 	return $html;
 }
 add_filter( 'get_search_form', 'unibz_search_form_modify' );
+
+
+// obfuscate an email address
+function unibz_obfuscateEmail($email)
+{
+    $alwaysEncode = array('.', ':', '@');
+
+    $result = '';
+
+    // Encode string using oct and hex character codes
+    for ($i = 0; $i < strlen($email); $i++)
+    {
+        // Encode 25% of characters including several that always should be encoded
+        if (in_array($email[$i], $alwaysEncode) || mt_rand(1, 100) < 25)
+        {
+            if (mt_rand(0, 1))
+            {
+                $result .= '&#' . ord($email[$i]) . ';';
+            }
+            else
+            {
+                $result .= '&#x' . dechex(ord($email[$i])) . ';';
+            }
+        }
+        else
+        {
+            $result .= $email[$i];
+        }
+    }
+
+    return $result;
+}
+
+// returns a link with an obfuscated email address
+function unibz_getObfuscatedEmailLink($email, $params = array()){
+    if (!is_array($params))
+    {
+        $params = array();
+    }
+
+    // Tell search engines to ignore obfuscated uri
+    if (!isset($params['rel']))
+    {
+        $params['rel'] = 'nofollow';
+    }
+
+    $neverEncode = array('.', '@', '+'); // Don't encode those as not fully supported by IE & Chrome
+
+    $urlEncodedEmail = '';
+    for ($i = 0; $i < strlen($email); $i++)
+    {
+        // Encode 25% of characters
+        if (!in_array($email[$i], $neverEncode) && mt_rand(1, 100) < 25)
+        {
+            $charCode = ord($email[$i]);
+            $urlEncodedEmail .= '%';
+            $urlEncodedEmail .= dechex(($charCode >> 4) & 0xF);
+            $urlEncodedEmail .= dechex($charCode & 0xF);
+        }
+        else
+        {
+            $urlEncodedEmail .= $email[$i];
+        }
+    }
+
+    $obfuscatedEmail = unibz_obfuscateEmail(strrev($email));
+    $obfuscatedEmailUrl = unibz_obfuscateEmail('mailto:' . $urlEncodedEmail);
+
+    $link = '<a href="' . $obfuscatedEmailUrl . '"';
+    foreach ($params as $param => $value)
+    {
+        $link .= ' ' . $param . '="' . htmlspecialchars($value). '"';
+    }
+    $link .= '>' . $obfuscatedEmail . '</a>';
+
+    return $link;
+}

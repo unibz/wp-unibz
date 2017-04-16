@@ -145,7 +145,7 @@
 					<div class="stretchy-wrapper-inner">
 						<h1 class="site-title"><?php echo $HeroTitle; ?></h1>
 						<?php if ( $HeroSubtitle || is_customize_preview() ) : ?>
-							<p class="site-description"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
+							<p class="site-description u-margin-btm-none"><?php echo $HeroSubtitle; /* WPCS: xss ok. */ ?></p>
 						<?php endif; ?>
 					</div>
 				</div>

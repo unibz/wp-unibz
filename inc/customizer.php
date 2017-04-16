@@ -81,6 +81,22 @@ function unibz_customize_register( $wp_customize ) {
     )
   );  
 
+  // SETTING MAP EMAIL
+  $wp_customize->add_setting(
+    'my_theme_settings[google_map_email]',
+    array('type' => 'option')
+  );
+
+  $wp_customize->add_control(
+    'map_email_control',
+    array(
+      'type' => 'text',
+      'label' => __( 'E-mail address', 'my_theme' ),
+      'section' => 'map_section',
+      'settings' => 'my_theme_settings[google_map_email]'
+    )
+  );
+
   // END GOOGLE MAP SECTION
 
   // ---------------------------------------------------------------------------------

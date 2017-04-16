@@ -219,7 +219,7 @@ article img {
     text-align: center;
 }
 
-.site-description {
+.u-margin-btm-none {
 	margin-bottom: 0;
 }
 
@@ -467,6 +467,12 @@ address {
 		white-space: pre;
 }
 
+address.email, address.email a{
+	text-align:left;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
 #colophon a {
     text-decoration: underline;
     font-weight: normal;
@@ -474,6 +480,7 @@ address {
     margin-right: 1em;
     display: inline-block;
 }
+
 
 /*
  * Brand

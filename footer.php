@@ -35,7 +35,8 @@
 					<div class="row">
 							<div class="col-md-5">
 								<strong><?php echo $my_theme_settings['google_map_title'];?></strong>
-								<address><?php echo $my_theme_settings['google_map_address'];?></address>
+								<address class="u-margin-btm-none"><?php echo $my_theme_settings['google_map_address'];?></address>
+								<address class="email"><?php echo unibz_getObfuscatedEmailLink($my_theme_settings['google_map_email']);?></address>
 							</div>
 							<div class="col-md-7">
 								<iframe id="footer-map" <?php echo $mapURL[0]; ?>></iframe>
