@@ -17,10 +17,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area <?php if(is_active_sidebar('sidebar-1')) echo 'col-md-8'; else echo 'col-xs-12'; ?>">
-		<main id="main" class="site-main" role="main">
-
-			<?php
+		<?php
 			while ( have_posts() ) : the_post();
 
 				get_template_part( 'template-parts/content', 'page' );
@@ -31,11 +28,11 @@ get_header(); ?>
 				endif;
 
 			endwhile; // End of the loop.
-			?>
+		?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	</main><!-- #main -->
+</div><!-- #primary -->
 
 <?php
-get_sidebar();
-get_footer();
+	get_sidebar();
+	get_footer();
