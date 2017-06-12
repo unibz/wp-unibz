@@ -14,7 +14,13 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="entry-content">
+	<header class="page-header">
+		<h1 class="page-title">
+			<?php the_title(); ?>
+		</h1>
+	</header>
+
+	<div class="page-content">
 		<?php
 			the_content();
 
@@ -26,7 +32,7 @@
 	</div><!-- .entry-content -->
 
 	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
+		<footer class="page-footer">
 			<?php
 				edit_post_link(
 					sprintf(
