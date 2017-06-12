@@ -51,11 +51,6 @@
 						</a>
 					</div><!-- .site-branding -->
 
-
-
-
-
-
 					<div class="navbar-header col-xs-10 col-sm-1 col-sm-push-10">
 						<?php if (has_nav_menu('primary')) : ?>
 						<div id="navbar-toggle-wrapper">
@@ -86,9 +81,6 @@
 						<?php endif; ?>
 					</div><!--  -->
 
-
-
-
 					<!-- navigation menu -->
 					<div class="col-xs-12 col-sm-10 col-sm-pull-1 padding-collapse-sm">
 						<?php
@@ -106,8 +98,6 @@
 						?>
 					</div>
 					<!-- navigation menu -->
-
-
 
 					</div><!-- .row -->
 				</div><!-- .container -->
@@ -165,5 +155,5 @@
 
 			<div class="container">
 				<div class="row">
-					<div id="primary" class="content-area <?php if(is_active_sidebar('sidebar-1')) echo 'col-md-8'; else echo 'col-xs-12'; ?>">
+					<div id="primary" class="content-area col-md-8 <?php if(!is_active_sidebar('sidebar-1')) echo 'col-md-offset-2'; ?>">
 						<main id="main" class="site-main" role="main">
