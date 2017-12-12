@@ -219,7 +219,7 @@ function unibz_save_hero_meta_box( $post_id ) {
 
     $hero_meta_box_title = "";
     $hero_meta_box_subtitle = "";
-    $hero_meta_box_display = true;
+    $hero_meta_box_hide = true;
 
     if(isset($_POST["hero-meta-box-title"]))
     {
@@ -234,8 +234,8 @@ function unibz_save_hero_meta_box( $post_id ) {
     update_post_meta($post_id, "hero-meta-box-subtitle", $hero_meta_box_subtitle);
 
 
-    $hero_meta_box_display = $_POST["hero-meta-box-display"];
-    update_post_meta($post_id, "hero-meta-box-display", $hero_meta_box_display);
+    $hero_meta_box_hide = $_POST["hero-meta-box-hide"];
+    update_post_meta($post_id, "hero-meta-box-hide", $hero_meta_box_hide);
 
 }
 add_action( 'save_post', 'unibz_save_hero_meta_box' );
