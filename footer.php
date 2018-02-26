@@ -66,7 +66,7 @@
 				 if (widgetArea.length == 0) {
 					$('#primary').removeClass('col-md-9');
 				 }
-			 }
+			 });
 		</script>
 	</body>
 </html>
