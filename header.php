@@ -21,6 +21,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<link rel='shortcut icon' href='<?php echo get_template_directory_uri() . '/img/favicon.ico'; ?>' type='image/x-icon'/ >
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 	<meta property="og:image" content="<?php 
 		if(has_post_thumbnail()) {
 			the_post_thumbnail_url();
