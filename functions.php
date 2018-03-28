@@ -243,6 +243,9 @@ add_action( 'save_post', 'unibz_save_hero_meta_box' );
 
 // my walker to build the navigation menu
 class MyWalker extends Walker_Nav_Menu {
+
+    private $count = 0;
+
     var $db_fields = array (
         'parent' => 'menu_item_parent', 
         'id'     => 'db_id'
@@ -258,6 +261,10 @@ class MyWalker extends Walker_Nav_Menu {
 	}
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $current_object_id = 0 ) {
+
+        if($depth == 0 && ++$this->count > 4) {
+            return;
+        }
 		
 		if(array_search('menu-item-has-children', $item->classes)) {
 			$item->classes[] = 'dropdown-submenu';
