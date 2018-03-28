@@ -544,7 +544,7 @@ hr {
 	    padding-bottom: 52%;
 	}
 	body {
-		font-size:17px;
+		font-size:16.5px;
 	}
 }
 
@@ -553,7 +553,7 @@ hr {
 	    padding-bottom: 52%;
 	}
 	body {
-		font-size:20px;
+		font-size:18px;
 	}
 }
 
@@ -595,6 +595,12 @@ hr {
 @media screen and (min-width: 1024px) {
 	div.stretchy-wrapper {
 	    padding-bottom: 40%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.no-widgets .container {
+	    width: 970px;
 	}
 }
 
