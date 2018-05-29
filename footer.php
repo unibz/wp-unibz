@@ -47,7 +47,7 @@
 					?>
 					<div class="row" style="margin-top:50px;">
 						<div class="col-xs-12">
-							<a href="<?php bloginfo('template_directory');?>/privacy.pdf">Privacy and Cookie Policy</a>
+							<a href="https://www.unibz.it/en/legal/privacy/">Privacy and Cookie Policy</a>
 							<a href="<?php bloginfo('template_directory');?>/legal.html">Legal</a>
 							<a href="https://github.com/unibz/wp-unibz/tree/unibz2">About</a>
 						</div>
