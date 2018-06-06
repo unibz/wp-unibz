@@ -144,7 +144,7 @@
 			?>
 
 			<div class="hero" style="background-image:url('<?php 
-				if(has_post_thumbnail()) {
+				if(!is_home() && has_post_thumbnail()) {
 					the_post_thumbnail_url();
 				}
 				else {
