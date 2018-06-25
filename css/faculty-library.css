@@ -1,0 +1,39 @@
+a:hover, a:active {
+	color:#e1a22e;
+}
+#primary-menu>li {
+	background:#e1a22e;
+	color:white;
+}
+.unibrand{
+	background:#e1a22e;
+	color:white;
+}
+
+.btn.unibrand{
+	background:#e1a22e !important;
+	color:white;
+	border: 0;
+	margin-right: 7px;
+}
+
+.unibrand a:hover, .unibrand a:focus{
+	background:#e1a22e !important;
+	color:white;
+}
+
+.entry-date {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #e1a22e;
+}
+
+#today {
+	background-color:#e1a22e;
+	border-radius: 21px;
+}
+
+#wp-calendar a {
+	text-decoration: none;
+	color: #e1a22e;
+}

@@ -174,7 +174,8 @@ function unibz_customize_register( $wp_customize ) {
         'dsgn' => 'Design and Art',
         'econ' => 'Economics and Management',
         'scitec' => 'Science and Technology',
-        'edu' => 'Education'
+        'edu' => 'Education',
+        'library' => 'Library'
       )
     )
   );
