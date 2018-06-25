@@ -56,17 +56,5 @@
 			</footer><!-- #colophon -->
 		</div><!-- .site -->
 		<?php wp_footer(); ?>
-		<script>
-			/**
-			 *	Hide the widget area if there are no widgets by expanding the primary div
-			 *
-			 */
-			 $(function() {
-				 var widgetArea = document.getElementsByClassName('widget-area');
-				 if (widgetArea.length == 0) {
-					$('#primary').removeClass('col-md-9');
-				 }
-			 });
-		</script>
 	</body>
 </html>
